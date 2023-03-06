@@ -7,7 +7,7 @@ const IndexPage = () => {
         <main>
             <div>
               <p>
-                Decimo Gatsby
+                Decimo Gatsby site
               </p>
             </div>
         </main>
