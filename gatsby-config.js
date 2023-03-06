@@ -1,3 +1,8 @@
+// support for .env, .env.development, and .env.production
+require("dotenv").config()
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
@@ -18,12 +23,21 @@ module.exports = {
       "path": "./src/images/"
     },
     __key: "images"
-  }, {
+  }, 
+  {
     resolve: 'gatsby-source-filesystem',
     options: {
       "name": "pages",
       "path": "./src/pages/"
     },
     __key: "pages"
-  }]
+  },
+  // {
+  //   resolve: `gatsby-source-drupal`,
+  //   options: {
+  //     baseUrl: ``,
+  //     apiBase: `api`, // optional, defaults to `jsonapi`
+  //   },
+  // }
+]
 };
