@@ -32,12 +32,12 @@ module.exports = {
     },
     __key: "pages"
   },
-   {
-     resolve: `gatsby-source-drupal`,
-     options: {
-       baseUrl: `https://decimodrupal.lndo.site/`,
-       apiBase: `jsonapi`, // optional, defaults to `jsonapi`
-     },
-   }
+  {
+    resolve: `gatsby-source-drupal`,
+    options: {
+      baseUrl: `https://decimodrupal.lndo.site/`,
+      apiBase: `jsonapi`, // optional, defaults to `jsonapi`
+    },
+  }
 ]
 };
