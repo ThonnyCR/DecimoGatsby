@@ -36,7 +36,7 @@ module.exports = {
      resolve: `gatsby-source-drupal`,
      options: {
        baseUrl: `https://decimodrupal.lndo.site/`,
-      apiBase: `jsonapi`, // optional, defaults to `jsonapi`
+       apiBase: `jsonapi`, // optional, defaults to `jsonapi`
      },
    }
 ]
