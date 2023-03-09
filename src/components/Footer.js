@@ -34,7 +34,6 @@ export const query = graphql`
 const Footer = () => {
     const allData = useStaticQuery(query);
     const data = allData.allNodeFooter.nodes[0];
-    console.log(data);
     return (
         <Wrapper>
             <div className='main'>
