@@ -34,7 +34,6 @@ export const query = graphql`
 const AboutUs = () => {
     const allData = useStaticQuery(query);
     const data = allData.allNodeAboutUs.nodes[0];
-    console.log(data);
     return (
         <Wrapper>
             <div className='aboutus-cont'>
