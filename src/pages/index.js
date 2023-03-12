@@ -3,7 +3,7 @@ import Layout from "../components/Layout"
 import { Script } from "gatsby"
 import AboutUs from "../components/AboutUs"
 import TeamMembers from "../components/TeamMembers"
-import Testing from "../components/Testing"
+import DCarousel from "../components/Carousel"
 const IndexPage = () => {
   //query**
 
@@ -17,7 +17,7 @@ const IndexPage = () => {
               
               <TeamMembers/>
               <AboutUs/>
-              <Testing/>
+              <DCarousel/>
             </div>
         </main>
       </Layout>
