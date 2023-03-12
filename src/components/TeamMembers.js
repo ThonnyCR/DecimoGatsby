@@ -33,17 +33,15 @@ export const query = graphql`
 
 const TeamMembers = () => {
   const members = useStaticQuery(query).allNodeTeamMember.nodes;
-  console.log(members);
 
   return (
     <Wrapper>
-      Hello world
       {/* contenedor de las cards */}
       <div className='card-container'>
         {members.map((member, index) => {
           return (
             /* cada card */
-            <div className='card' key={index}>
+            <div className='perso-card' key={index}>
               {/* imagen de la card */}
               <GatsbyImage
                 image={getImage(member.relationships.field_team_member_image.localFile)}
@@ -51,13 +49,13 @@ const TeamMembers = () => {
                 className='card-image'
               />
               {/* header de la card (nombre y cargo) */}
-              <div className='card-header'>
+              <div className='perso-card-header'>
                 {/* nombre del miembro del team */}
                 <p className='card-name'>{member.title} <span className='card-sep'></span><span className='charge-text'>{member.field_team_member_charge}</span></p>
               </div>
-              <hr className='card-line'></hr>
+              <div className='card-line'></div>
               {/* footer de la card */}
-              <div className='card-footer'>
+              <div className='perso-card-footer'>
                 {/* descripcion de la card */}
                 <div className='card-description'>
                   {member.field_team_member_description}
@@ -84,6 +82,9 @@ const TeamMembers = () => {
   )
 }
 const Wrapper = styled.div`
+*{
+  font-family: 'Avenir LT Std', sans-serif;
+}
 .card-container{
     width: 80%;
     display: grid;
@@ -91,7 +92,7 @@ const Wrapper = styled.div`
     grid-template-columns: repeat(3, 1fr);
     margin: 40px auto;
 }
-.card{
+.perso-card{
     width: 380px;
     height: auto;
     border-radius: 10px;
@@ -165,7 +166,7 @@ const Wrapper = styled.div`
   }
 }
 @media only screen and (max-width: 420px){
-    .card-container, .card{
+    .card-container, .perso-card{
       width: 300px;
     }
     .card-image{
@@ -182,11 +183,12 @@ const Wrapper = styled.div`
       height: 50px;
     }
     .card-description{
-      width: 300px;
+      width: 250px;
+      margin: auto;
     }
     .icons-container{
       margin-top: 20px;
     }
 }
 `
-export default TeamMembers
+export default TeamMembers;

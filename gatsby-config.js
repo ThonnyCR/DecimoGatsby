@@ -38,6 +38,18 @@ module.exports = {
       baseUrl: `https://decimodrupal.lndo.site/`,
       apiBase: `jsonapi`, // optional, defaults to `jsonapi`
     },
-  }
+  },
+ /*  {
+    resolve: `gatsby-plugin-webfonts`,
+    options: {
+      fonts: {
+        google: [
+          {
+            family: ""
+          }
+        ]
+      }
+    }
+  } */
 ]
 };

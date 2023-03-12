@@ -3,17 +3,21 @@ import Layout from "../components/Layout"
 import { Script } from "gatsby"
 import AboutUs from "../components/AboutUs"
 import TeamMembers from "../components/TeamMembers"
+import Testing from "../components/Testing"
 const IndexPage = () => {
+  //query**
+
   return (
       <Layout>
         <main>
             <div>
               <p> 
                 Decimo Gatsby site
-               
               </p>
+              
               <TeamMembers/>
               <AboutUs/>
+              <Testing/>
             </div>
         </main>
       </Layout>
