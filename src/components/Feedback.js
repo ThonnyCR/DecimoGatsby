@@ -16,7 +16,7 @@ query{
 }
 `
 //recordar las props
-const DCarousel = () => {
+const Feedback = () => {
   const data = useStaticQuery(query).allNodePartenerComment.nodes;
   console.log(data);
   return (
@@ -183,4 +183,4 @@ background: linear-gradient(89.63deg, #339999 10.13%, #FF9933 90.06%);
 }
 `
 
-export default DCarousel
+export default Feedback
