@@ -21,7 +21,7 @@ export const Head = () => {
   return(
   <>
     <title>Decimo</title>
-    <Script src='navbarScript.js'></Script>
+    {/* <script src='navbarScript.js'></script> */}
   </>
   ) 
 }
