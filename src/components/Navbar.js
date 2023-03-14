@@ -15,7 +15,7 @@ export const query = graphql`
             field_navbarimage {
                 localFile {
                 childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+                    gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
                 }
                 }
             }
@@ -30,19 +30,21 @@ const Navbar = () => {
     const image = getImage(data.allNodeNavbar.nodes[0].relationships.field_navbarimage.localFile);
   return (
     <Wrapper>
-        <nav className='navbar'>     
+        <header className='navbar'>     
             {/* img */}
-                <Link to="/" className='nav-logo'>
+            <div className='nav-logo'>
+                <Link to="/">
                     <GatsbyImage
                         image={image}
                         alt='Decimo logo'
                         className='logo'
                         />
                 </Link>
+            </div>
                 
 
             {/* items */}
-            <div className='nav-items'>
+            <nav className='nav-items'>
                 <ul className='nav-menu'>
                     <li className='nav-item'>
                         <Link to='/' className="menu-link" >{items[0]}</Link>
@@ -67,14 +69,14 @@ const Navbar = () => {
                     <li className='nav-space'>
                     </li>
                 </ul>
-            </div>
+            </nav>
 
             <div className='hamburger'>
                 <IconContext.Provider value={{ size: 25}}>
                     <span><FaBars /></span>
                 </IconContext.Provider>
             </div>
-        </nav>
+        </header>
     </Wrapper>
   )
 }
@@ -108,7 +110,7 @@ const Wrapper = styled.section`
     }
 
     .nav-logo{
-        width: 100px;
+        width:147px;
     }
 
     .menu-link{
@@ -166,16 +168,13 @@ const Wrapper = styled.section`
         background-color:white;
     } */
 
-    @media (max-width:992px){
+    @media (max-width:1200px){
         .navbar{
             padding:30px 50px;
         }
 
         .hamburger{
             display:block;
-        }
-
-        .hamburger.active .bar{
         }
 
         .nav-menu{
