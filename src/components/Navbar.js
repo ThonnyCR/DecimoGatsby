@@ -56,14 +56,14 @@ const Navbar = () => {
                         <Link to='/' className='menu-link'>{items[2]}</Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/' className='menu-link'>{items[3]}</Link>
+                        <Link to='/blog' className='menu-link'>{items[3]}</Link>
                     </li>
                     <li className='nav-item'>
                         <Link to='/' className='menu-link'>{items[4]}</Link>
                     </li>
                     <li className='nav-item'>
                         <button className='btn-contact'>
-                            <Link to='/' className='menu-link'>{items[5]}</Link>
+                            <Link to='/ContactPage' className='menu-link'>{items[5]}</Link>
                         </button>
                     </li>
                     <li className='nav-space'>

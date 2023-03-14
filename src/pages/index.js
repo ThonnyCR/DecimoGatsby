@@ -11,13 +11,9 @@ const IndexPage = () => {
       <Layout>
         <main>
             <div>
-              <p> 
-                Decimo Gatsby site
-              </p>
-              
-              <TeamMembers/>
-              <AboutUs/>
               <Feedback/>
+              <AboutUs/>
+              <TeamMembers/>
             </div>
         </main>
       </Layout>

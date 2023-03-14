@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { Link } from 'gatsby'
 
 
 export const query = graphql`
@@ -41,15 +42,15 @@ const Footer = () => {
                 <hr className='footer-upper-line'></hr>
                 {/* logo and items section */}
                 <div className='first-section'>
-                    <div className="column1"><GatsbyImage
+                    <Link to='/'><div className="column1"><GatsbyImage
                                             image = {getImage(data.relationships.field_footerlogo.localFile)}
                                             alt='Logo'
                                             className='footer-logo'
-                                            /></div>
-                    <div className="column2">{data.field_footeritems[0]}</div>
-                    <div className="column3">{data.field_footeritems[1]}</div>
-                    <div className="column4">{data.field_footeritems[2]}</div>
-                    <div className="column5">{data.field_footeritems[3]}</div>
+                                            /></div></Link>
+                    <Link to='/'><div className="column2">{data.field_footeritems[0]}</div></Link>
+                    <Link to='/'><div className="column3">{data.field_footeritems[1]}</div></Link>
+                    <Link to='/'> <div className="column4">{data.field_footeritems[2]}</div></Link>
+                    <Link to='/ContactPage'><div className="column5">{data.field_footeritems[3]}</div></Link>
                 </div>
                 <hr className='footer-lower-line'></hr>
                 {/* icons and copy right section */}
