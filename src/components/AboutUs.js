@@ -85,11 +85,11 @@ const AboutUs = () => {
             </div>
 
 
-        </Wrapper>
-    )
-}
+         </Wrapper>
+     )
+ }
 
-const Wrapper = styled.div`
+ const Wrapper = styled.div`
 .clear-text{
     color: #ACB4C3;
 }

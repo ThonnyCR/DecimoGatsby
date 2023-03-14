@@ -30,7 +30,7 @@ export const Head = () => {
   return(
   <>
     <title>Decimo</title>
-    <script src='navbarScript.js'></script>
+    <Script src='navbarScript.js'></Script>
   </>
   ) 
 }
