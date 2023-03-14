@@ -11,7 +11,7 @@ const IndexPage = () => {
                 Decimo Gatsby site
                 
               </p>
-              <AboutUs/>
+              {/* <AboutUs/> */}
             </div>
         </main>
       </Layout>
@@ -24,7 +24,7 @@ export const Head = () => {
   return(
   <>
     <title>Decimo</title>
-    <script src='navbarScript.js'></script>
+    <Script src='navbarScript.js'></Script>
   </>
   ) 
 }
