@@ -140,9 +140,6 @@ export const query = graphql`
 const Wrapper = styled.div`
   .blog-body {
     width:100%;
-    /* max-width: 1270px; */
-    /* padding-left:auto;
-    padding-left: auto; */
   }
 
   .blog-header {
@@ -158,10 +155,6 @@ const Wrapper = styled.div`
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     grid-auto-rows: minmax(320px, auto);
-    /* display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: space-around; */
-    /* width: 1270px; */
     justify-items: center;
     max-width: 1270px;
     gap:40px;
@@ -174,14 +167,15 @@ const Wrapper = styled.div`
     width: 320px;
     height: 320px;
     display: inline-block;
-    /* margin-bottom: 57px; */
+    a{
+      color:black;
+    }
   }
 
   .card-post:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
-    /* border-top:5px; */
     border-top-style: solid;
     border-image-source: linear-gradient(
       89.63deg,
@@ -234,17 +228,8 @@ const Wrapper = styled.div`
     justify-content: center;
   }
 
-  .blog-navigation-container {
-    /* display: flex;
-    width: 300px; */
-  }
-
   .blog-navigation-container a {
-    /* display: block;
-    text-align:center;
-    font-weight: bold;
-    padding:13px;
-    font-size:25px; */
+    color:black;
   }
 
   .blog-navigation-container a:hover {

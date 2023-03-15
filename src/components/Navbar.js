@@ -104,7 +104,7 @@ const Wrapper = styled.section`
 
     .nav-items{
         display:flex;
-        width:100%;
+        /* width:100%; */
         justify-content:end;
         gap:49px;
     }
@@ -168,7 +168,7 @@ const Wrapper = styled.section`
         background-color:white;
     } */
 
-    @media (max-width:1200px){
+    @media (max-width:1350px){
         .navbar{
             padding:30px 50px;
         }

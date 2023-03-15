@@ -115,6 +115,9 @@ const Wrapper = styled.div`
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
     padding: 20px 120px 40px 120px;
+    a{
+      color:black;
+    }
 }
 
 .column1 {
