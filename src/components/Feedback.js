@@ -18,19 +18,17 @@ query{
 //recordar las props
 const Feedback = () => {
   const data = useStaticQuery(query).allNodePartenerComment.nodes;
-  console.log(data);
   return (
     <Wrapper>
       <div className='upper-line'></div>
       <Carousel fade={true} controls={false} className='carousel-style'>
 
         {data.map((comment, index) => {
-          console.log(index);
           {/* aqui adentro va toda la info de cada entrada */ }
           return (
             <Carousel.Item key={index}>
               <div className='car-header'>
-                <p className='carousel-title'>{/* props.title */}What our partners are saying</p>
+                <h2 className='carousel-title'>{/* props.title */}What our partners are saying</h2>
                 <p className='carousel-subtitle'>{/* props.subtitle */} Lorem ipsum dolor sit amet, consectetur adipiscing elit,.</p>
               </div>
               <div className='carousel-body'>
@@ -122,7 +120,6 @@ background: linear-gradient(89.63deg, #339999 10.13%, #FF9933 90.06%);
   align-items: center;
   justify-content:center;
   font-weight: 600;
-  font-size: 37px;
   line-height: 52px;
   background: linear-gradient(90.17deg, rgba(255, 255, 255, 0.9) 2.49%, rgba(51, 153, 153, 0.9) 31.87%, rgba(255, 153, 51, 0.702) 48.3%, rgba(255, 255, 255, 0.9) 85.64%), #FFFFFF;
   -webkit-background-clip: text;
@@ -134,6 +131,7 @@ background: linear-gradient(89.63deg, #339999 10.13%, #FF9933 90.06%);
 .comment-text p{
   width: fit-content;
   height: fit-content;
+  font-size: 37px !important;
 }
 
 .author-info{
