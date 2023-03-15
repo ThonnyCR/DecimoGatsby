@@ -12,10 +12,15 @@ const IndexPage = () => {
       <Layout>
         <main>
             <div>
-              <ServicesandTechs/>
-              <Feedback/>
+              <ServicesandTechs
+              title = "Services & Technologies"
+              subtitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit,."/>
+              <Feedback
+              title = "What our partners are saying"
+              subtitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit,."/>
               <AboutUs/>
-              <TeamMembers/>
+              <TeamMembers
+              title = "Our global team"/>
             </div>
         </main>
       </Layout>

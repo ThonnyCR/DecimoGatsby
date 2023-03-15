@@ -16,7 +16,7 @@ query{
 }
 `
 //recordar las props
-const Feedback = () => {
+const Feedback = (props) => {
   const data = useStaticQuery(query).allNodePartenerComment.nodes;
   return (
     <Wrapper>
@@ -28,8 +28,8 @@ const Feedback = () => {
           return (
             <Carousel.Item key={index}>
               <div className='car-header'>
-                <h2 className='carousel-title'>{/* props.title */}What our partners are saying</h2>
-                <p className='carousel-subtitle'>{/* props.subtitle */} Lorem ipsum dolor sit amet, consectetur adipiscing elit,.</p>
+                <h2 className='carousel-title'>{props.title}</h2>
+                <p className='carousel-subtitle'>{props.subtitle}</p>
               </div>
               <div className='carousel-body'>
                 {/* comentario */}
@@ -131,7 +131,7 @@ background: linear-gradient(89.63deg, #339999 10.13%, #FF9933 90.06%);
 .comment-text p{
   width: fit-content;
   height: fit-content;
-  font-size: 37px !important;
+  font-size: 37px;
 }
 
 .author-info{
@@ -149,7 +149,7 @@ background: linear-gradient(89.63deg, #339999 10.13%, #FF9933 90.06%);
 }
 
 @media only screen and (max-width: 850px){
-  .comment-text{
+  .comment-text p{
     font-size: 25px;
   }
 }
@@ -171,9 +171,12 @@ background: linear-gradient(89.63deg, #339999 10.13%, #FF9933 90.06%);
 
   @media only screen and (max-width: 420px){
     .comment-text{
-    font-size: 15px;
+    font-size: 10px !important;
     line-height: 22px;
     margin: 80px auto 10px auto;
+  }
+  .comment-text p{
+    font-size: 15px !important;
   }
   .carousel-style{
     height: 500px !important;

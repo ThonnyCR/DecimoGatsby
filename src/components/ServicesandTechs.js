@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
-import { GatsbyImage,getImage } from 'gatsby-plugin-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 export const query = graphql`
 query{
@@ -24,42 +24,58 @@ query{
 }
 `
 
-const ServicesandTechs = () => {
+const ServicesandTechs = (props) => {
   const services = useStaticQuery(query).allNodeServiceAndTech.nodes;
   console.log(services);
-    return (
-        <Wrapper>
-            <section className='services-body'>
-              <div className='cards-container'>
-                {services.map((service, index)=>{
-                  return(
-                    <div key = {index} className='service-card'>
-                      <div className='service-card-container'>
-                        <div className='card-icon-container'>
-                          <GatsbyImage
-                          image = {getImage(service.relationships.field_service_and_tech_icon.localFile)}
-                          alt='icon'
-                          className='card-icon'
-                          />
-                        </div>
-                          <h2 className='card-title'>{service.title}</h2>
-                          <div className='text-container'>
-                            <h4 className='card-subtitle'>{service.field_service_and_tech_subtitle}</h4>
-                            <p className='card-body'>{service.field_service_and_tech_body}</p>
-                          </div>
-                      </div>
-                    </div>
-                  );
-                })}
+  return (
+    <Wrapper>
+      {/* title of the section */}
+      <div className='services-header'>
+        <h2>{props.title}</h2>
+        <p>{props.subtitle}</p>
+      </div>
+      <section className='services-body'>
+        <div className='cards-container'>
+          {services.map((service, index) => {
+            return (
+              <div key={index} className='service-card'>
+                <div className='service-card-container'>
+                  <div className='card-icon-container'>
+                    <GatsbyImage
+                      image={getImage(service.relationships.field_service_and_tech_icon.localFile)}
+                      alt='icon'
+                      className='card-icon'
+                    />
+                  </div>
+                  <h2 className='card-title'>{service.title}</h2>
+                  <div className='text-container'>
+                    <h4 className='card-subtitle'>{service.field_service_and_tech_subtitle}</h4>
+                    <p className='card-body'>{service.field_service_and_tech_body}</p>
+                  </div>
+                </div>
               </div>
-            </section>
-        </Wrapper>
-    )
+            );
+          })}
+        </div>
+      </section>
+    </Wrapper>
+  )
 }
 
 
 const Wrapper = styled.div`
-
+.services-header{
+  width: 50%;
+  margin: 80px auto 0px auto;
+  text-align: center;
+  color: #000B28;
+}
+.services-header h2{
+  font-size: 47px;
+} 
+.services-header p{
+  font-weight: 400px !important;
+}
 .services-body{
   width: 100%;
   display: grid;
@@ -69,17 +85,17 @@ const Wrapper = styled.div`
 .cards-container{
   display:grid;
   grid-template-columns: repeat(3 ,1fr);
-  gap: 40px;
+  gap: 80px;
   margin: 100px auto;
 }
 .service-card{
-  transition: 0.3s;
+  transition: 0.2s;
   width: 320px;
   height: 320px;
   display: inline-block;
 }
 .service-card:hover{
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     /* border-top:5px; */
@@ -93,7 +109,7 @@ const Wrapper = styled.div`
     border-width: 5px;
 }
 .service-card-container{
-  border: 1px solid #e7eaee;
+  /* border: 1px solid #e7eaee; */
   height: 100%;
 }
 .service-card-container:hover{
@@ -131,6 +147,22 @@ const Wrapper = styled.div`
 .card-body{
   margin-top: 30px;
   font-size: 16px;
+}
+
+@media only screen and (max-width: 1100px){
+  .cards-container{
+    grid-template-columns: repeat(2 ,1fr);
+  }
+}
+@media only screen and (max-width: 700px){
+  .cards-container{
+    grid-template-columns: repeat(1 ,1fr);
+  }
+}
+@media only screen and (max-width: 500px){
+  .services-header{
+    width: 90%;
+  }
 }
 `
 

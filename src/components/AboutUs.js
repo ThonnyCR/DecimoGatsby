@@ -133,7 +133,7 @@ const AboutUs = () => {
     height: 200px;
 }
 .icons-container{
-    margin: 100px 0px 0px 0px;
+    margin: 100px 0px 0px 50px;
 }
 .aboutus-icon{
     width: 40px;

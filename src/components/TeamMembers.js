@@ -31,11 +31,14 @@ export const query = graphql`
 }
 `
 
-const TeamMembers = () => {
+const TeamMembers = (props) => {
   const members = useStaticQuery(query).allNodeTeamMember.nodes;
 
   return (
     <Wrapper>
+      {/* Titulo de la seccion */}
+      <h2 className='members-title'>{props.title}</h2>
+
       {/* contenedor de las cards */}
       <div className='card-container'>
         {members.map((member, index) => {
@@ -85,12 +88,19 @@ const Wrapper = styled.div`
 *{
   font-family: 'Avenir LT Std', sans-serif;
 }
+.members-title{
+  margin: 80px auto 20px auto;
+  width: 50%;
+  text-align:center;
+  font-size: 40px;
+  font-weight: 700px !important;
+}
 .card-container{
     width: 80%;
     display: grid;
     grid-gap: 20px;
     grid-template-columns: repeat(3, 1fr);
-    margin: 40px auto;
+    margin: 60px auto;
 }
 .perso-card{
     width: 380px;
@@ -160,6 +170,7 @@ const Wrapper = styled.div`
   .card-container{
     grid-template-columns: repeat(2, 1fr);
   }
+}
   @media only screen and (max-width: 860px){
   .card-container{
     grid-template-columns: repeat(1, 1fr);
