@@ -26,7 +26,6 @@ query{
 
 const ServicesandTechs = (props) => {
   const services = useStaticQuery(query).allNodeServiceAndTech.nodes;
-  console.log(services);
   return (
     <Wrapper>
       {/* title of the section */}

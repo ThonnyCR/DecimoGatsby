@@ -124,6 +124,7 @@ const AboutUs = () => {
 }
 .aboutus-title{
     font-size: 47px;
+    font-weight: 500;
 }
 .aboutus-maintext{
     margin: 90px 0px 0px 0px;

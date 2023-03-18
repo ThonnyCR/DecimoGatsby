@@ -21,6 +21,7 @@ const Feedback = (props) => {
   return (
     <Wrapper>
       <div className='upper-line'></div>
+      <div className='carousel-cont'>
       <Carousel fade={true} controls={false} className='carousel-style'>
 
         {data.map((comment, index) => {
@@ -45,6 +46,7 @@ const Feedback = (props) => {
           )
         })}
       </Carousel>
+      </div>
     </Wrapper>
   )
 }
@@ -52,6 +54,11 @@ const Feedback = (props) => {
 const Wrapper = styled.div`
 *{
   font-family: 'Avenir LT Std', sans-serif;
+}
+.carousel-cont{
+  background: #000B28;
+  width: auto;
+  height: 750px;
 }
 .carousel .carousel-indicators button{
   width: 10px; 
