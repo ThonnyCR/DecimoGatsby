@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
+import { SEO } from "../components/seo";
 
 const BlogPost = ({ data, pageContext }) => {
   const {
@@ -11,12 +12,11 @@ const BlogPost = ({ data, pageContext }) => {
     body: { value },
     relationships: {
       field_header_image: { localFile },
-      uid:{display_name}
+      uid: { display_name },
     },
   } = data.allNodeBlogPost.nodes[0];
   const main = { __html: value }; //Body
   const image = getImage(localFile); //Post Image
-  // console.log(pageContext);
   return (
     <Wrapper>
       <Layout>
@@ -32,11 +32,15 @@ const BlogPost = ({ data, pageContext }) => {
                   />
                 </div>
                 <h1>{title}</h1>
-                <p>{created}</p>
-                <p>By {display_name}</p>
+                <div className="post-info">
+                  <p>{created} By {display_name}</p>
+                </div>
               </div>
               <div className="blog-post-body">
-                <div className="blog-post-body-content" dangerouslySetInnerHTML={main} />
+                <div
+                  className="blog-post-body-content"
+                  dangerouslySetInnerHTML={main}
+                />
               </div>
             </div>
           </section>
@@ -45,6 +49,13 @@ const BlogPost = ({ data, pageContext }) => {
     </Wrapper>
   );
 };
+
+export const Head = ({ data, pageContext }) => (
+  <SEO
+    title={`${data.allNodeBlogPost.nodes[0].title} - Decimo Technology Solutions`}
+    description={`Blog post ${data.allNodeBlogPost.nodes[0].title} of Decimo Technology Solutions`}
+  />
+);
 
 export const query = graphql`
   query ($title: String!) {
@@ -84,25 +95,32 @@ const Wrapper = styled.div`
     margin-right: auto;
   }
 
-  .blog-post-header-image{
-    display:flex;
-    justify-content:center;
+  .blog-post-header-image {
+    display: flex;
+    justify-content: center;
   }
 
   .blog-post-header h1 {
     padding: 30px 0 30px 0;
-    text-align:center;
+    text-align: center;
   }
 
-  .blog-post-body-content{
-     line-height: 25px;
+  .blog-post-body-content {
+    line-height: 25px;
   }
 
-  .blog-post-body{
-    padding-top:40px;
-    padding-bottom:40px;
+  .blog-post-body {
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
+  .post-info {
+    display:flex;
+    width: 100%;
+    p{
+      color:#999999;
+    }
+  }
 `;
 
 export default BlogPost;

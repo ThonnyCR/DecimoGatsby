@@ -4,8 +4,9 @@ import Layout from "../components/Layout";
 import styled from "styled-components";
 import slugify from "slugify";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
+import { SEO } from "../components/seo";
 
-const BlogPage = ({ data, pageContext }) => {
+const BlogPage = ({ data, pageContext } ) => {
   // data
   const { title, field_blog_page_subtitle: subtitle } =
     data.allNodeBlogPage.nodes[0];
@@ -57,7 +58,7 @@ const BlogPage = ({ data, pageContext }) => {
                           <h3>{title}</h3>
                         </Link>
                         <h4>a</h4>
-                        <p>{title}</p>
+                        <p dangerouslySetInnerHTML={main} />
                       </div>
                     </div>
                   </div>
@@ -86,6 +87,7 @@ const BlogPage = ({ data, pageContext }) => {
                     </Link>
                   </li>
                 ))}
+
                 {!isLast && (
                   <li>
                     <Link to={nextPage} rel="next">
@@ -100,8 +102,12 @@ const BlogPage = ({ data, pageContext }) => {
       </Wrapper>
     </Layout>
   );
+  
 };
 
+export const Head = ({pageContext}) => (
+  <SEO title={`Blog ${pageContext.currentPage === 0 ? "1" : pageContext.currentPage} - Decimo Technology Solutions`} pathname={`blog/${pageContext.currentPage === 0 ? "1" : pageContext.currentPage}`} description={`Blog page ${pageContext.currentPage === 0 ? "1" : pageContext.currentPage} of Decimo Technology Solutions`}/>
+)
 export const query = graphql`
   query ($skip: Int!, $limit: Int!) {
     allNodeBlogPage {
@@ -209,9 +215,33 @@ const Wrapper = styled.div`
   }
 
   .card-post-body {
-    padding: 0px 40px 18px 40px;
+    display:flex;
+    flex-direction: column;
+    padding: 0px 30px 18px 30px;
     width: 100%;
   }
+
+  .card-post-body h3{
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    line-clamp:2;
+    overflow:hidden;
+    margin-top:30px;
+  }
+  
+  .card-post-body p{
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:3;
+    line-clamp:3;
+    overflow:hidden;
+  }
+
+  .card-post-body h4{
+    margin-top:5px;
+  }
+
   .card-post-header {
     height: 81px;
     border-radius: 25px;

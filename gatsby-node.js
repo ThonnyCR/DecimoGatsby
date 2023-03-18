@@ -1,5 +1,6 @@
 const path = require("path");
-const slugify = require('slugify')
+const slugify = require('slugify');
+const { pathPrefix } = require("./gatsby-config");
 
 // This funtion create posts of blog page
 async function createBlogPosts({ graphql, actions }) {

@@ -4,6 +4,7 @@ import { Script } from "gatsby";
 import AboutUs from "../components/AboutUs";
 import TeamMembers from "../components/TeamMembers";
 import Feedback from "../components/Feedback";
+import { SEO } from "../components/seo"
 
 const IndexPage = () => {
   //query**
@@ -21,11 +22,6 @@ const IndexPage = () => {
 
 export default IndexPage;
 
-export const Head = () => {
-  return (
-    <>
-      <title>Decimo</title>
-      {/* <script src='navbarScript.js'></script> */}
-    </>
-  );
-};
+export const Head = () => (
+  <SEO title="Decimo Technology Solutions" pathname="" description="Home page of Decimo Technology Solutions"/>
+)
