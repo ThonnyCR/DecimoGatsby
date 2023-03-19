@@ -8,6 +8,8 @@ const Job = ({
   jobBody,
   jobDepartment,
   openPositionsButtun,
+  jobSchedule,
+  jobLink,
 }) => {
   const main = { __html: jobBody }; //Body
 
@@ -15,22 +17,27 @@ const Job = ({
     <Wrapper>
       <div className="job-card">
         <div className="job-header">
-          <div className="job-title">
+          <div className="job-text-flex">
             <h3>{jobTitle}</h3>
-            <p>{jobDepartment}</p>
+            <p className="job-department">{jobDepartment}</p>
           </div>
           <div
             className="blog-post-body-content"
             dangerouslySetInnerHTML={main}
           />
-          <p>{jobLocation}</p>
+          <div className="job-text-flex">
+            <p>{jobLocation}</p>
+            <p>{jobSchedule}</p>
+          </div>
         </div>
         <div className="job-body">
-          <button className="btn-apply">
-            <Link to="" className="btn-link">
-              {openPositionsButtun}
-            </Link>
-          </button>
+            <a href={jobLink}>
+              <button className="btn-apply">
+                <span className="btn-link">
+                  {openPositionsButtun} 
+                </span>
+              </button>
+            </a>
         </div>
       </div>
     </Wrapper>
@@ -61,18 +68,22 @@ const Wrapper = styled.main`
     flex-direction: column;
   }
 
-  .job-title{
+  .job-text-flex{
     display:flex;
     gap:24px;
     align-items:center;
   }
 
-  .job-title p{
+  .job-department{
     background: rgba(128, 202, 203, 0.2);
     border-radius: 24px;
     padding: 5px 18px;
     color: #339999;
     /* font-weight:700; */
+  }
+
+  .blog-post-body-content{
+    margin: 32px 0 32px;
   }
 
   .job-body{
@@ -101,7 +112,6 @@ const Wrapper = styled.main`
   .btn-apply .btn-link {
     color: white;
     font-size: 16px;
-    
   }
 
   .btn-apply:hover .btn-link {
@@ -121,6 +131,7 @@ const Wrapper = styled.main`
       display:flex;
       align-items:center;
       text-align:start;
+      margin-top: 32px;
     }
   }
 `;

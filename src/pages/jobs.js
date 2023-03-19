@@ -52,6 +52,8 @@ const JobsPage = ({ data }) => {
                     openPositionsButtun={
                       jobPage.field_open_positions_page_button
                     }
+                    jobSchedule={job.field_job_schedule}
+                    jobLink={job.field_job_link.uri}
                   />
                 ))}
             </section>
@@ -78,6 +80,11 @@ export const query = graphql`
         id
         field_job_title
         field_job_location
+        field_job_schedule
+        field_job_link{
+          uri
+          title
+        }
         body {
           value
         }
