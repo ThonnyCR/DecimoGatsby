@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "gatsby";
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons";
@@ -155,7 +154,6 @@ const Wrapper = styled.section`
     border-radius: 25px;
     background-color: #ff9933;
     border: none;
-    cursor: pointer;
   }
 
   .btn-contact .menu-link {
@@ -167,6 +165,7 @@ const Wrapper = styled.section`
   .btn-contact:hover .menu-link {
     color: #ff9933;
   }
+  
   .btn-contact:hover {
     background-color: white;
     transition: 0.3s;
