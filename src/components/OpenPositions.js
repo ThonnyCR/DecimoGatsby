@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
+import { Link } from 'gatsby'
 
 export const query = graphql`
     query {
@@ -39,8 +40,8 @@ const OpenPositions = () => {
 
     const cardData = useStaticQuery(query).allNodeOpenPositions.nodes;
     const sectionData = useStaticQuery(query).allNodeOpenPositionsSection.nodes[0];
-    const title_section = { __html: useStaticQuery(query).allNodeOpenPositionsSection.nodes[0].field_title_section.value}
-    const descripcion_section = { __html: useStaticQuery(query).allNodeOpenPositionsSection.nodes[0].field_description_section.value}
+    const title_section = { __html: useStaticQuery(query).allNodeOpenPositionsSection.nodes[0].field_title_section.value }
+    const descripcion_section = { __html: useStaticQuery(query).allNodeOpenPositionsSection.nodes[0].field_description_section.value }
     return (
         <Wrapper>
             <div className="openpositions-container">
@@ -50,8 +51,8 @@ const OpenPositions = () => {
                             <div className="card-section" key={index}>
                                 {/* Imagen de las cards */}
                                 <GatsbyImage
-                                image={getImage(cardData.relationships.field_image_card.localFile)}
-                                alt={cardData.title} className="card-img"/>
+                                    image={getImage(cardData.relationships.field_image_card.localFile)}
+                                    alt={cardData.title} className="card-img" />
                                 {/* Area de trabajo asi como el slogan */}
                                 <div className="job-slogan-section">
                                     <h3 className="job-area">
@@ -72,14 +73,17 @@ const OpenPositions = () => {
                 </div>
                 <div className="section-2">
                     <p className="title-style">
-                        <div dangerouslySetInnerHTML={title_section}/>
+                        <div dangerouslySetInnerHTML={title_section} />
                     </p>
                     <p className="desciption-style">
-                        <div className="prueba-description" dangerouslySetInnerHTML={descripcion_section}/>
+                        <div className="prueba-description" dangerouslySetInnerHTML={descripcion_section} />
                     </p>
-                    <button className="button-style">
-                        {sectionData.field_button_section}
-                    </button>
+                    <Link to='/jobs'>
+                        <button className="button-style">
+                            {sectionData.field_button_section}
+                        </button>
+                    </Link>
+
                 </div>
             </div>
         </Wrapper>
@@ -183,19 +187,18 @@ const Wrapper = styled.div`
     .title-style p{
         font-size:47px;
         font-style:normal;
-        font-weight:700;
-        line-height:8px;
-        margin-top:55px;
-        margin-bottom: 50px;
+        font-weight:700 !important;
+        line-height:8px !important;
+        margin-top:55px !important;
+        margin-bottom: 50px !important;
     }
 
     .prueba-description p{
-        line-height:15px;
         font-family: 'Avenir LT Std', sans-serif;
         font-size:16px;
         font-style:normal;
         font-weight:400;
-        line-height:15px;
+        line-height: 30px !important;
     }
 
     .button-style{

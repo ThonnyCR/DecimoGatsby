@@ -8,6 +8,8 @@ import ServicesandTechs from "../components/ServicesandTechs"
 import { graphql } from 'gatsby'
 import PrimarySection from "../components/PrimarySection"
 import Projects from "../components/Projects"
+import { SEO } from "../components/seo"
+import OpenPositions from "../components/OpenPositions"
 const IndexPage = ({ data = [] }) => {
 
   const homeinfo = data.allNodeHome.nodes[0];
@@ -36,6 +38,7 @@ const IndexPage = ({ data = [] }) => {
           <AboutUs />
           <TeamMembers
             title="Our global team" />
+          <OpenPositions/>
         </div>
       </main>
     </Layout>
@@ -44,13 +47,7 @@ const IndexPage = ({ data = [] }) => {
 
 export default IndexPage;
 
-export const Head = () => {
-  return (
-    <>
-      <SEO title="Decimo Technology Solutions" pathname="" description="Home page of Decimo Technology Solutions" />
-    </>
-  )
-}
+
 
 export const query = graphql`
   query {
@@ -88,3 +85,6 @@ export const query = graphql`
     }
   }
 `
+export const Head = () => (
+  <SEO title="Decimo Technology Solutions" pathname="" description="Home page of Decimo Technology Solutions"/>
+);

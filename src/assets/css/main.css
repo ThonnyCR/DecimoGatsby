@@ -6,7 +6,7 @@
 
 }
 
-h1 {
+/* h1 {
   font-size: 60px !important;
   font-weight: bold !important;
   margin: 0 !important;
@@ -25,10 +25,10 @@ h4 {
   font-size: 16px !important;
   font-weight: bold !important;
   margin: 0 !important;
-}
+} */
 
 p {
-  font-size: 16px !important;
+  /* font-size: 16px !important; */
   margin: 0 !important;
 }
 
