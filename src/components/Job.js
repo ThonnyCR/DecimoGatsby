@@ -134,6 +134,15 @@ const Wrapper = styled.main`
       margin-top: 32px;
     }
   }
+
+  @media (max-width: 768px) {
+    .job-text-flex{
+      display:flex;
+      /* gap:24px; */
+      align-items:start;
+      flex-direction:column;
+    }
+  }
 `;
 
 export default Job;

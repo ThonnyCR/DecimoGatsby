@@ -169,7 +169,7 @@ const Wrapper = styled.div`
   }
 
   .card-post {
-    transition: 0.3s;
+    transition: 0.3s ease;
     width: 320px;
     height: 320px;
     display: inline-block;
@@ -188,6 +188,7 @@ const Wrapper = styled.div`
       #339999 5.4%,
       #ff9933 49.53%
     );
+    transition: 0.3s ease;
     border-image-slice: 1;
     border-width: 5px;
   }
@@ -195,6 +196,7 @@ const Wrapper = styled.div`
   .card-post-container {
     border: 1px solid #e7eaee;
     height: 100%;
+    padding: 17px 16px;
   }
 
   .card-post-container:hover {
@@ -208,10 +210,6 @@ const Wrapper = styled.div`
     border: 10px solid;
     border-image-slice: 1;
     border-width: 5px;
-  }
-
-  .card-post-container {
-    padding: 17px 16px;
   }
 
   .card-post-body {

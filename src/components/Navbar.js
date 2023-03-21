@@ -211,7 +211,7 @@ const Wrapper = styled.section`
       background-color: #339999;
       width: 50%;
       text-align: right;
-      transition: 0.7s;
+      transition: 0.3s ease;
       height: 100%;
       z-index: 3;
     }
