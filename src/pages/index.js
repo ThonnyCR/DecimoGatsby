@@ -4,6 +4,8 @@ import { Script } from "gatsby"
 import AboutUs from "../components/AboutUs"
 import TeamMembers from "../components/TeamMembers"
 import Feedback from "../components/Feedback"
+import OpenPositions from "../components/OpenPositions"
+
 const IndexPage = () => {
   //query**
 
@@ -14,6 +16,7 @@ const IndexPage = () => {
               <Feedback/>
               <AboutUs/>
               <TeamMembers/>
+              <OpenPositions/>
             </div>
         </main>
       </Layout>

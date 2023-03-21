@@ -12,7 +12,7 @@ const ContactPage = ({data = []}) => {
     return (
         <Wrapper>
             <Layout>
-                <main>
+                <main className="contact-container">
                     <div className="contact-section">
                         <div className="section-1">
                             <h1 className="header-title-style">
@@ -36,13 +36,20 @@ const ContactPage = ({data = []}) => {
 
 const Wrapper = styled.div`
 
+    .contact-container{
+        width:100%;
+        display:flex;
+        justify-content:center;
+    }
+
     .contact-section{
         display:grid;
         grid-template-columns: 1fr 1fr;
+        max-width:992px;
     }
 
     .section-1{
-        margin: 200px 0 0 300px;
+        margin-top: 150px;
     }
 
     .section-2{
@@ -50,7 +57,7 @@ const Wrapper = styled.div`
         border-radius: 250px 250px 0px 0px;
         position:relative;
         overflow:visible;
-        width:500px;
+        /* width:500px; */
         height:772px;
     }
 
@@ -69,7 +76,7 @@ const Wrapper = styled.div`
         font-style: normal;
         font-size:60px;
         letter-spacing: -0.04em;
-        width: 600px;
+        /* width: 600px; */
         color:#000B28;
         line-height:70px;
         font-weight: 600;
@@ -78,7 +85,7 @@ const Wrapper = styled.div`
     .footer-title-style{
         font-style:normal;
         font-size:13px;
-        width: 283px;
+        max-width: 283px;
         height: 72px;
         font-weight: 600;
         color: rgba(0, 11, 40, 0.6);
@@ -97,24 +104,15 @@ const Wrapper = styled.div`
 
     //Responsive del ContactPage
 
-    @media only screen and (max-width: 1200px) and (min-width: 413px){
+    @media only screen and (max-width: 1250px) and (min-width: 413px){
         .contact-section{
             grid-template-columns: 1fr;
-            width: 10%;
-        }
-
-        .section-1{
-            text-align:center;
-            margin:auto;
-        }
-
-        .footer-title-style{
-            margin:auto;
         }
 
         .section-2{
             margin-top:50px;
         }
+
     }
 
     @media only screen and (max-width: 600px){
@@ -128,32 +126,22 @@ const Wrapper = styled.div`
     @media only screen and (max-width: 412px){
 
         .contact-section{
-            grid-template-columns:1fr;
-        }
-
-        .section-1{
-            margin: 0 0 0 0;
-        }
-
-        .section-2{
-            margin: 0 0 0 0;
-        }
-
-        .header-title-style{
-            margin: 0 0 0 0px;
+            grid-template-columns: 1fr;
         }
 
         .body-title-style{
+            text-align:center;
+        }
+
+        .header-title-style{
+            text-align:center;
         }
 
         .footer-title-style{
             text-align:center;
-            margin: 0 0 0 0px;
+            max-width:none;
         }
 
-        .section-2{
-            width: 20%;
-        }
     }
 `
 
