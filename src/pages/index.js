@@ -8,49 +8,48 @@ import ServicesandTechs from "../components/ServicesandTechs"
 import { graphql } from 'gatsby'
 import PrimarySection from "../components/PrimarySection"
 import Projects from "../components/Projects"
-const IndexPage = ({data = []}) => {
+const IndexPage = ({ data = [] }) => {
 
   const homeinfo = data.allNodeHome.nodes[0];
   console.log(homeinfo);
 
   return (
-      <Layout>
-        <main>
-          <PrimarySection
-          smalltitle = {homeinfo.field_home_small_title}
-          maintitle = {homeinfo.field_home_main_title}
-          subtitle = {homeinfo.field_home_subtitle}
-          giveacall = {homeinfo.field_home_give_us_a_call}
-          learnmore = {homeinfo.field_home_learn_more}
-          image = {homeinfo.relationships.field_home_image}/>
-            <div>
-              <ServicesandTechs
-              title = {homeinfo.field_home_services_title}
-              subtitle = {homeinfo.field_home_services_subtitle}/>
-              <Feedback
-              title = {homeinfo.field_home_feedback_title}
-              subtitle = {homeinfo.field_home_feedback_subtitle}/>
-              <Projects
-              title = {homeinfo.field_home_projects_title}
-              subtitle = {homeinfo.field_home_projects_subtitle}/>
-              <AboutUs/>
-              <TeamMembers
-              title = "Our global team"/>
-            </div>
-        </main>
-      </Layout>
+    <Layout>
+      <main>
+        <PrimarySection
+          smalltitle={homeinfo.field_home_small_title}
+          maintitle={homeinfo.field_home_main_title}
+          subtitle={homeinfo.field_home_subtitle}
+          giveacall={homeinfo.field_home_give_us_a_call}
+          learnmore={homeinfo.field_home_learn_more}
+          image={homeinfo.relationships.field_home_image} />
+        <div>
+          <ServicesandTechs
+            title={homeinfo.field_home_services_title}
+            subtitle={homeinfo.field_home_services_subtitle} />
+          <Feedback
+            title={homeinfo.field_home_feedback_title}
+            subtitle={homeinfo.field_home_feedback_subtitle} />
+          <Projects
+            title={homeinfo.field_home_projects_title}
+            subtitle={homeinfo.field_home_projects_subtitle} />
+          <AboutUs />
+          <TeamMembers
+            title="Our global team" />
+        </div>
+      </main>
+    </Layout>
   )
 }
 
 export default IndexPage;
 
-export const Head = () => { 
-  return(
-  <>
-    <title>Decimo</title>
-    {/* <script src='navbarScript.js'></script> */}
-  </>
-  ) 
+export const Head = () => {
+  return (
+    <>
+      <SEO title="Decimo Technology Solutions" pathname="" description="Home page of Decimo Technology Solutions" />
+    </>
+  )
 }
 
 export const query = graphql`
