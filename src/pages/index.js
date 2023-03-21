@@ -42,7 +42,7 @@ const IndexPage = ({data = []}) => {
   )
 }
 
-export default IndexPage
+export default IndexPage;
 
 export const Head = () => { 
   return(

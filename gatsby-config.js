@@ -8,8 +8,9 @@ require("dotenv").config({
  */
 module.exports = {
   siteMetadata: {
-    title: `Decimo`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: `Decimo Technology Solutions`,
+    siteUrl: `http://localhost:8001/`,
+    description: `Decimo site`,
   },
   plugins: ["gatsby-plugin-styled-components", "gatsby-plugin-image", "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
@@ -39,17 +40,5 @@ module.exports = {
       apiBase: `jsonapi`, // optional, defaults to `jsonapi`
     },
   },
- /*  {
-    resolve: `gatsby-plugin-webfonts`,
-    options: {
-      fonts: {
-        google: [
-          {
-            family: ""
-          }
-        ]
-      }
-    }
-  } */
 ]
 };
