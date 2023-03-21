@@ -90,15 +90,6 @@ export const query = graphql`
         field_error_title
         field_error_subtitle
         field_error_button
-        relationships {
-          field_error_image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(placeholder: BLURRED)
-              }
-            }
-          }
-        }
       }
     }
   }

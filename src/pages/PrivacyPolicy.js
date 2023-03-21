@@ -38,8 +38,10 @@ const PrivacyPolicyStyles = styled.main`
 
   .lineColor{
     background: linear-gradient(89.63deg, #339999 10.13%, #FF9933 90.06%);
-    padding:2px;
+    padding: 3px;
     border:none;
+    margin: 0px;
+    opacity: 200;
   }
 
   .imagePolicy{
