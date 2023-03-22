@@ -24,7 +24,6 @@ export const query = graphql`
 const Projects = (props) => {
 
   const projects = useStaticQuery(query).allNodeProjects.nodes;
-  console.log(projects)
   return (
     <Wrapper>
       <div className='projects'>
@@ -38,7 +37,7 @@ const Projects = (props) => {
           {projects.map((project, index) => {
             return (
               /* d */
-              <div className='img-cont'>
+              <div className='img-cont' key = {index}>
                 <GatsbyImage
                   image={getImage(project.relationships.field_project_image.localFile)}
                   alt="project"
