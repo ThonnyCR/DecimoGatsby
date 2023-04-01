@@ -14,8 +14,8 @@ const IndexPage = () => {
             <div>
               <Feedback/>
               <AboutUs/>
-              <Newsletter/>
               <TeamMembers/>
+              <Newsletter/>
             </div>
         </main>
       </Layout>
