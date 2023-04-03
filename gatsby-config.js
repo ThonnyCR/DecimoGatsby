@@ -39,6 +39,10 @@ module.exports = {
       baseUrl: `https://decimodrupal.lndo.site/`,
       apiBase: `jsonapi`, // optional, defaults to `jsonapi`
     },
+    includeRoutes:[
+      '**/form',
+      '**/form_submission',
+    ],
   },
 ]
 };
