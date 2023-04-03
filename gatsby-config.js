@@ -3,6 +3,7 @@ require("dotenv").config()
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
+
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
@@ -36,8 +37,12 @@ module.exports = {
   {
     resolve: `gatsby-source-drupal`,
     options: {
-      baseUrl: `https://decimodrupal.lndo.site/`,
+      baseUrl: process.env.DRUPAL_BASE_URL,
       apiBase: `jsonapi`, // optional, defaults to `jsonapi`
+      basicAuth: {
+        username: process.env.GATSBY_DRUPAL_USERNAME,
+        password: process.env.GATSBY_DRUPAL_PASSWORD,
+      },
     },
   },
 ]

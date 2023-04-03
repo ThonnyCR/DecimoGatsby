@@ -14,7 +14,7 @@ import HomeBlogPosts from "../components/HomeBlogPosts"
 const IndexPage = ({ data = [] }) => {
 
   const homeinfo = data.allNodeHome.nodes[0];
-
+  
   return (
     <Layout>
       <main>

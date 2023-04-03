@@ -32,7 +32,6 @@ export const query = graphql`
 const HomeBlogPosts = (props) => {
     const data = useStaticQuery(query);
     const posts = data.allNodeBlogPost.nodes
-    console.log(posts);
     return (
         <Wrapper>
             <section className="blog-header">

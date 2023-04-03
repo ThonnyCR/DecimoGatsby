@@ -24,9 +24,10 @@ const PrimarySection = (props) => {
                 </div>
                 <div className='image-section'>
                     <GatsbyImage
-                image = {getImage(props.image.localFile)}
-                alt = 'Home'
-                className='home-image'/>
+                        image = {getImage(props.image.localFile)}
+                        alt = 'Home'
+                        className='home-image'
+                    />
                 </div>
             </div>
         </Wrapper>

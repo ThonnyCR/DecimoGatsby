@@ -5,6 +5,7 @@ import styled from "styled-components";
 import slugify from "slugify";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
+import PaginationBlog from "../components/PaginationBlog";
 
 const BlogPage = ({ data, pageContext } ) => {
   // data
@@ -14,22 +15,18 @@ const BlogPage = ({ data, pageContext } ) => {
 
   // paginator
   const { currentPage, numPages } = pageContext;
-  const isFirst = currentPage === 1;
-  const isLast = currentPage === numPages;
-  const prevPage =
-    currentPage - 1 === 1 ? "/blog" : (currentPage - 1).toString();
-  const nextPage = (currentPage + 1).toString();
 
   return (
     <Layout>
       <Wrapper>
         <main>
           {/* header */}
+          { }
           <section className="blog-header">
             <h2>{title}</h2>
             <p className="blog-subtitle">{subtitle}</p>
           </section>
-          {/* Pagination */}
+          {/* Blogs */}
           <section className="blog-body">
             <div className="cards-container">
               {posts.map((post, index) => {
@@ -66,38 +63,10 @@ const BlogPage = ({ data, pageContext } ) => {
               })}
             </div>
           </section>
+          {/* Pagination */}
           <section className="blog-navigation">
-            <div className="blog-navigation-container">
-              <ul>
-                {!isFirst && (
-                  <li>
-                    <Link to={prevPage} rel="prev">
-                      Prev
-                    </Link>
-                  </li>
-                )}
-
-                {Array.from({ length: numPages }, (_, i) => (
-                  <li key={i}>
-                    <Link
-                      key={`pagination-number${i + 1}`}
-                      to={`/blog/${i === 0 ? "" : i + 1}`}
-                    >
-                      {i + 1}
-                    </Link>
-                  </li>
-                ))}
-
-                {!isLast && (
-                  <li>
-                    <Link to={nextPage} rel="next">
-                      Next
-                    </Link>
-                  </li>
-                )}
-              </ul>
-            </div>
-          </section>
+          <PaginationBlog currentPage={currentPage} numPages={numPages} />
+        </section>
         </main>
       </Wrapper>
     </Layout>
@@ -150,7 +119,8 @@ const Wrapper = styled.div`
 
   .blog-header {
     text-align: center;
-    margin-bottom: 90px;
+    margin-bottom: 75px;
+    margin-top:75px;
   }
 
   .blog-subtitle {
@@ -254,31 +224,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .blog-navigation-container a {
-    color:black;
-  }
-
-  .blog-navigation-container a:hover {
-    color: #ff9933;
-  }
-
-  .blog-navigation-container ul {
-    list-style-type: none;
-    overflow: hidden;
-  }
-
-  .blog-navigation-container ul li {
-    float: left;
-  }
-
-  .blog-navigation-container ul li a {
-    display: block;
-    text-align: center;
-    font-weight: bold;
-    padding: 13px;
-    font-size: 25px;
+    margin: 75px 0 75px 0;
   }
 `;
 
