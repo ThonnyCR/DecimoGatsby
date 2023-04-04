@@ -102,7 +102,7 @@ const Wrapper = styled.div`
     display: block;
     text-align: center;
     font-weight: bold;
-    padding: 13px;
+    padding: 10px;
     font-size: 16px;
   }
   span{

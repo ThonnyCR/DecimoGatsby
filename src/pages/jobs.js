@@ -25,12 +25,13 @@ const JobsPage = ({ data }) => {
   return (
     <Layout>
       <Wrapper>
-        <div className="jobs-container">
+        <div className="jobs-container jobs-gradient">
           <div className="jobs-main">
             <section className="jobs-header">
               <h2>{jobPage.field_open_positions_page_title}</h2>
               <div className="btns-filter">
                 <button onClick={() => setFilter("all")} className="btn-filter">{jobPage.field_open_positions_button_filt}</button>
+                {/* Sorted alphabetically */}
                 {newsJobs.map((job, index) => {
                   const [text, value] = job;
                   return (
@@ -42,6 +43,7 @@ const JobsPage = ({ data }) => {
               </div>
             </section>
             <section className="jobs-body">
+              {/* Sorted DESC */}
                 {filteredJobs.map((job) => (
                   <Job
                     key={job.id}
@@ -75,7 +77,7 @@ export const query = graphql`
         field_open_positions_button_filt
       }
     }
-    allNodeOpenPositionsJobs {
+    allNodeOpenPositionsJobs(sort: { created: DESC }) {
       nodes {
         id
         field_job_title
@@ -102,7 +104,14 @@ const Wrapper = styled.main`
   .jobs-container {
     width: 100%;
   }
-
+/* 
+  .jobs-gradient{
+    background: 
+      radial-gradient(
+        50% 60% at 75% 50%, rgba(255, 153, 51, 0.35) 0%, rgba(255, 204, 153, 0) 60%),
+      radial-gradient(50% 50% at 60% 43%, rgba(51, 153, 153, 0.35) 0%, rgba(128, 202, 203, 0) 60%);
+  } */
+  
   .jobs-main {
     max-width: 1200px;
     margin-left: auto;

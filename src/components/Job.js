@@ -59,7 +59,7 @@ const Wrapper = styled.main`
 
   .job-card:hover{
     background: #FFFFFF;
-    box-shadow: 0px 48px 140px -48px rgba(57, 59, 106, 0.08);
+    box-shadow: 0px 48px 140px rgba(57, 59, 106, 0.16);
   }
   .job-header{
     flex: 0 0 80%;

@@ -1,4 +1,4 @@
-import { graphql, Link, link } from "gatsby";
+import { graphql, Link } from "gatsby";
 import React from "react";
 import Layout from "../components/Layout";
 import styled from "styled-components";
@@ -149,7 +149,8 @@ const Wrapper = styled.div`
   }
 
   .card-post:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
+    box-shadow: 0px 48px 140px rgba(57, 59, 106, 0.15);
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     border-top-style: solid;
