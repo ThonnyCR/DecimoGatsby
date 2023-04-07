@@ -11,6 +11,7 @@ import Projects from "../components/Projects"
 import { SEO } from "../components/seo"
 import OpenPositions from "../components/OpenPositions"
 import HomeBlogPosts from "../components/HomeBlogPosts"
+import Testing from "../components/Testing"
 const IndexPage = ({ data = [] }) => {
 
   const homeinfo = data.allNodeHome.nodes[0];
@@ -46,6 +47,7 @@ const IndexPage = ({ data = [] }) => {
           title = {homeinfo.field_home_open_positions_title}/>
         </div>
       </main>
+      <Testing/>
     </Layout>
   )
 }
