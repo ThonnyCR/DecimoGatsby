@@ -188,6 +188,7 @@ const Wrapper = styled.section`
     border-radius: 25px;
     background-color: #ff9933;
     border: none;
+    transition: 0.4s ease;
   }
 
   .btn-contact .menu-link {
@@ -225,6 +226,7 @@ const Wrapper = styled.section`
   @media (max-width: 1350px) {
     .navbar {
       padding: 30px 50px;
+      border: 1px solid #E7EAEE;
     }
 
     .hamburger {
@@ -238,12 +240,12 @@ const Wrapper = styled.section`
     .nav-menu {
       display: block;
       position: fixed;
-      right: -50%;
+      right: -320px;
       top: 0;
       gap: 0;
       flex-direction: column;
       background-color: #339999;
-      width: 50%;
+      width: 320px;
       text-align: right;
       -webkit-transition: .5s ease;
       transition: .5s ease;
@@ -257,7 +259,7 @@ const Wrapper = styled.section`
     }
 
     .nav-item {
-      margin: 50px 0px;
+      margin: 20px 0px;
       padding-right: 35px;
     }
 

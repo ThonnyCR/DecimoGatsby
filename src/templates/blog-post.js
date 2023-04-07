@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql,Link } from "gatsby";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
@@ -13,8 +13,10 @@ const BlogPost = ({ data, pageContext }) => {
     relationships: {
       field_header_image: { localFile },
       uid: { display_name },
+      field_blog_post_tags: tags
     },
   } = data.allNodeBlogPost.nodes[0];
+
   const main = { __html: value }; //Body
   const image = getImage(localFile); //Post Image
   return (
@@ -33,7 +35,16 @@ const BlogPost = ({ data, pageContext }) => {
                 </div>
                 <h1>{title}</h1>
                 <div className="post-info">
-                  <p>{created} By {display_name}</p>
+                  <div className="post-info-autor">
+                    <p>{created} By {display_name}</p>
+                  </div>
+                  <div className="post-info-tags">
+                    <div>
+                      {tags.map((tag,index)=>(
+                          <Link to="/" className="post-info-tag" key={index}>{tag.name}</Link>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="blog-post-body">
@@ -59,7 +70,7 @@ export const Head = ({ data, pageContext }) => (
 
 export const query = graphql`
   query ($title: String!) {
-    allNodeBlogPost(filter: { title: { eq: $title } }) {
+    allNodeBlogPost(filter: {title: {eq: $title}}) {
       nodes {
         title
         created(formatString: "MMMM DD, YYYY")
@@ -77,6 +88,9 @@ export const query = graphql`
           uid {
             display_name
           }
+          field_blog_post_tags {
+            name
+          }
         }
       }
     }
@@ -89,10 +103,8 @@ const Wrapper = styled.div`
     display: block;
     max-width: 1200px;
     width: 100%;
-    padding-left: 50px;
-    padding-right: 50px;
-    margin-left: auto;
-    margin-right: auto;
+    margin:75px auto 75px auto;
+    
   }
 
   .blog-post-header-image {
@@ -110,16 +122,45 @@ const Wrapper = styled.div`
   }
 
   .blog-post-body {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
 
   .post-info {
-    display:flex;
     width: 100%;
-    p{
-      color:#999999;
+  }
+
+  .post-info-autor{
+    color:#999999;
+  }
+
+  .post-info-tags{
+    padding-top: 30px;
+  }
+
+  .post-info-tag{
+    background-color: rgba(128, 202, 203, 0.2);
+    padding: 5px 18px;
+    color: #339999;
+    transition: 0.3s;
+    cursor:pointer;
+  }
+
+  .post-info-tag:hover{
+    background-color: rgba(128, 202, 203, 0.2);
+    transition: 0.3s;
+  }
+
+  @media (max-width: 768px) {
+    .blog-post-container {
+      padding-left:35px;
+      padding-right:35px;
     }
+
+    .post-info{
+      justify-content:center;
+    }
+
   }
 `;
 

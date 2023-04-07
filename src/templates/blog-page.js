@@ -165,7 +165,7 @@ const Wrapper = styled.div`
   }
 
   .card-post-container {
-    border: 1px solid #e7eaee;
+    border: 1px solid #E7EAEE;
     height: 100%;
     padding: 17px 16px;
   }
