@@ -26,7 +26,6 @@ const JobsPage = ({ data }) => {
   const jobPage = data.allNodeOpenPositionsPage.nodes[0];
 
   const filteredJobs = filterJobs(jobs, filter);
-  // console.log(filteredJobs)
 
   return (
     <Layout>
@@ -110,13 +109,6 @@ const Wrapper = styled.main`
   .jobs-container {
     width: 100%;
   }
-/* 
-  .jobs-gradient{
-    background: 
-      radial-gradient(
-        50% 60% at 75% 50%, rgba(255, 153, 51, 0.35) 0%, rgba(255, 204, 153, 0) 60%),
-      radial-gradient(50% 50% at 60% 43%, rgba(51, 153, 153, 0.35) 0%, rgba(128, 202, 203, 0) 60%);
-  } */
   
   .jobs-main {
     max-width: 1200px;

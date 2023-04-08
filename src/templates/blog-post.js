@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import styled from "styled-components";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
+const slugify = require('slugify');
 
 const BlogPost = ({ data, pageContext }) => {
   const {
@@ -41,7 +42,7 @@ const BlogPost = ({ data, pageContext }) => {
                   <div className="post-info-tags">
                     <div>
                       {tags.map((tag,index)=>(
-                          <Link to="/" className="post-info-tag" key={index}>{tag.name}</Link>
+                          <Link to={`/tag/${slugify(tag.name, { lower: true })}`} className="post-info-tag" key={index}>{tag.name}</Link>
                       ))}
                     </div>
                   </div>
@@ -101,7 +102,7 @@ const Wrapper = styled.div`
   .blog-post-container {
     position: relative;
     display: block;
-    max-width: 1200px;
+    max-width: 1000px;
     width: 100%;
     margin:75px auto 75px auto;
     

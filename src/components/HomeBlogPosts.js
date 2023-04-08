@@ -8,7 +8,7 @@ import slugify from "slugify";
 
 export const query = graphql`
 {
-  allNodeBlogPost(limit: 6) {
+  allNodeBlogPost(sort: { created: DESC },limit: 6) {
     nodes {
       title
       body {
@@ -63,11 +63,11 @@ const HomeBlogPosts = (props) => {
                                         />
                                     </div>
                                     <div className="card-post-body">
-                                        <Link to={`/blog/${slug}`}>
-                                            <h3>{title}</h3>
-                                        </Link>
-                                        <h4>a</h4>
-                                        <p dangerouslySetInnerHTML={main} />
+                                      <Link to={`/blog/${slug}`}>
+                                        <h5>{title}</h5>
+                                      </Link>
+                                      {/* <p dangerouslySetInnerHTML={main} /> */}
+                                      <p>{summary}</p>
                                     </div>
                                 </div>
                             </div>
@@ -86,19 +86,14 @@ const HomeBlogPosts = (props) => {
 }
 
 const Wrapper = styled.div`
-.blog-body {
+  .blog-body {
     width:100%;
   }
 
   .blog-header {
     text-align: center;
-    margin-bottom: 90px;
-    margin-top: 120px;
-  }
-
-  .blog-header h2 {
-    font-weight: 700;
-font-size: 47px !important;
+    margin-bottom: 75px;
+    margin-top:75px;
   }
 
   .blog-subtitle {
@@ -114,45 +109,56 @@ font-size: 47px !important;
     gap:40px;
     margin-left:auto;
     margin-right: auto;
-    margin-bottom: 100px;
   }
 
   .card-post {
-    transition: 0.3s ease;
-    width: 320px;
-    height: 320px;
-    display: inline-block;
-    a{
-      color:black;
-    }
-  }
+  position: relative;
+  transition: 0.3s ease;
+  width: 320px;
+  height: 320px;
+  display: inline-block;
+  background: transparent;
+  border: 1px solid #E7EAEE;
+}
 
-  .card-post:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    border-top-style: solid;
-    border-image-source: linear-gradient(
-      89.63deg,
-      #339999 5.4%,
-      #ff9933 49.53%
-    );
-    transition: 0.3s ease;
-    border-image-slice: 1;
-    border-width: 5px;
-  }
+.card-post a {
+  color: black;
+}
+
+.card-post::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background-image: linear-gradient(89.63deg, #339999 5.4%, #ff9933 49.53%);
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.card-post:hover {
+  background: #FFFFFF;
+  box-shadow: 0px 48px 140px rgba(57, 59, 106, 0.15);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.card-post:hover::before {
+  opacity: 1;
+}
 
   .card-post-container {
-    border: 1px solid #e7eaee;
+    /* border: 1px solid #E7EAEE; */
     height: 100%;
     padding: 17px 16px;
   }
 
   .card-post-container:hover {
-    border-left: 0;
+    /* border-left: 0;
     border-right: 0;
     border-bottom: 0;
-    border-top: 0;
+    border-top: 0; */
   }
 
   .border-gradient {
@@ -164,29 +170,32 @@ font-size: 47px !important;
   .card-post-body {
     display:flex;
     flex-direction: column;
-    padding: 0px 30px 18px 30px;
+    padding: 0px 20px 18px 20px;
     width: 100%;
+    overflow: hidden;
+    position: relative;
   }
 
-  .card-post-body h3{
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:2;
-    line-clamp:2;
-    overflow:hidden;
-    margin-top:30px;
-  }
-  
-  .card-post-body p{
+  .card-post-body h5{
     display:-webkit-box;
     -webkit-box-orient:vertical;
     -webkit-line-clamp:3;
     line-clamp:3;
     overflow:hidden;
+    margin-top:17px;
+    
   }
-
-  .card-post-body h4{
-    margin-top:5px;
+  
+  .card-post-body p{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp:4;
+    /* white-space: nowrap; */
   }
 
   .card-post-header {
@@ -198,10 +207,12 @@ font-size: 47px !important;
     height: 100%;
     border-radius: 12px;
   }
+
   .posts-link {
     margin: auto;
     width: auto;
     text-align: center;
+    margin:80px 0;
   }
   .posts-link p{
     display: inline-block;

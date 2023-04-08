@@ -36,12 +36,13 @@ const BlogPage = ({ data, pageContext } ) => {
                   relationships: { field_header_image: image },
                 } = post;
 
-                const main = { __html: value };
+                // const main = { __html: value };
                 const slug = slugify(title, { lower: true });
                 const cardImage = getImage(image.localFile.childImageSharp);
 
                 return (
                   <div key={index} className="card-post">
+                    <div className="top-gradient"></div>
                     <div className="card-post-container">
                       <div className="card-post-header">
                         <GatsbyImage
@@ -52,10 +53,10 @@ const BlogPage = ({ data, pageContext } ) => {
                       </div>
                       <div className="card-post-body">
                         <Link to={`/blog/${slug}`}>
-                          <h3>{title}</h3>
+                          <h5>{title}</h5>
                         </Link>
-                        <h4>a</h4>
-                        <p dangerouslySetInnerHTML={main} />
+                        {/* <p dangerouslySetInnerHTML={main} /> */}
+                        <p>{summary}</p>
                       </div>
                     </div>
                   </div>
@@ -139,42 +140,46 @@ const Wrapper = styled.div`
   }
 
   .card-post {
-    transition: 0.3s ease;
-    width: 320px;
-    height: 320px;
-    display: inline-block;
-    a{
-      color:black;
-    }
-  }
+  position: relative;
+  transition: 0.3s ease;
+  width: 320px;
+  height: 320px;
+  display: inline-block;
+  background: transparent;
+  border: 1px solid #E7EAEE;
+}
 
-  .card-post:hover {
-    background: #FFFFFF;
-    box-shadow: 0px 48px 140px rgba(57, 59, 106, 0.15);
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    border-top-style: solid;
-    border-image-source: linear-gradient(
-      89.63deg,
-      #339999 5.4%,
-      #ff9933 49.53%
-    );
-    transition: 0.3s ease;
-    border-image-slice: 1;
-    border-width: 5px;
-  }
+.card-post a {
+  color: black;
+}
+
+.card-post::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background-image: linear-gradient(89.63deg, #339999 5.4%, #ff9933 49.53%);
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.card-post:hover {
+  background: #FFFFFF;
+  box-shadow: 0px 48px 140px rgba(57, 59, 106, 0.15);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.card-post:hover::before {
+  opacity: 1;
+}
 
   .card-post-container {
-    border: 1px solid #E7EAEE;
+    /* border: 1px solid #E7EAEE; */
     height: 100%;
     padding: 17px 16px;
-  }
-
-  .card-post-container:hover {
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 0;
-    border-top: 0;
   }
 
   .border-gradient {
@@ -186,29 +191,31 @@ const Wrapper = styled.div`
   .card-post-body {
     display:flex;
     flex-direction: column;
-    padding: 0px 30px 18px 30px;
+    padding: 0px 20px 18px 20px;
     width: 100%;
+    overflow: hidden;
+    position: relative;
   }
 
-  .card-post-body h3{
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:2;
-    line-clamp:2;
-    overflow:hidden;
-    margin-top:30px;
-  }
-  
-  .card-post-body p{
+  .card-post-body h5{
     display:-webkit-box;
     -webkit-box-orient:vertical;
     -webkit-line-clamp:3;
     line-clamp:3;
     overflow:hidden;
+    margin-top:17px;
   }
-
-  .card-post-body h4{
-    margin-top:5px;
+  
+  .card-post-body p{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp:4;
+    /* white-space: nowrap; */
   }
 
   .card-post-header {
