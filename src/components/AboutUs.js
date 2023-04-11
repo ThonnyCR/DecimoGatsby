@@ -10,6 +10,9 @@ export const query = graphql`
       title
       field_about_us_main_text
       field_about_us_author_and_charge
+      field_about_us_link {
+        uri
+      }
       relationships {
         field_about_us_decimo_logo {
           localFile {
@@ -65,21 +68,27 @@ const AboutUs = () => {
                     </div>
                     {/* iconos de redes sociales */}
                     <div className='icons-container'>
+                        <a href={data.field_about_us_link[0].uri} target='_blank'>
                         <GatsbyImage
                             image={getImage(data.relationships.field_about_us_icons[0].localFile)}
                             alt='alt'
                             className='aboutus-icon'
                         />
+                        </a>
+                        <a href={data.field_about_us_link[1].uri} target='_blank'>
                         <GatsbyImage
                             image={getImage(data.relationships.field_about_us_icons[1].localFile)}
                             alt='alt'
                             className='aboutus-icon'
                         />
+                        </a>
+                        <a href={data.field_about_us_link[2].uri} target='_blank'>
                         <GatsbyImage
                             image={getImage(data.relationships.field_about_us_icons[2].localFile)}
                             alt='alt'
                             className='aboutus-icon'
                         />
+                        </a>
                     </div>
                 </div>
             </div>
@@ -122,6 +131,7 @@ const AboutUs = () => {
 }
 .aboutus-title{
     font-size: 47px;
+    font-weight: 500;
 }
 .aboutus-maintext{
     margin: 90px 0px 0px 0px;
@@ -131,7 +141,7 @@ const AboutUs = () => {
     height: 200px;
 }
 .icons-container{
-    margin: 100px 0px 0px 0px;
+    margin: 100px 0px 0px 50px;
 }
 .aboutus-icon{
     width: 40px;

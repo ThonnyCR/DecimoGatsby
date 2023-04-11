@@ -16,22 +16,22 @@ query{
 }
 `
 //recordar las props
-const Feedback = () => {
+const Feedback = (props) => {
   const data = useStaticQuery(query).allNodePartenerComment.nodes;
-  console.log(data);
   return (
     <Wrapper>
+      <div className='gradient'>
       <div className='upper-line'></div>
+      <div className='carousel-cont'>
       <Carousel fade={true} controls={false} className='carousel-style'>
 
         {data.map((comment, index) => {
-          console.log(index);
           {/* aqui adentro va toda la info de cada entrada */ }
           return (
             <Carousel.Item key={index}>
               <div className='car-header'>
-                <p className='carousel-title'>{/* props.title */}What our partners are saying</p>
-                <p className='carousel-subtitle'>{/* props.subtitle */} Lorem ipsum dolor sit amet, consectetur adipiscing elit,.</p>
+                <h2 className='carousel-title'>{props.title}</h2>
+                <p className='carousel-subtitle'>{props.subtitle}</p>
               </div>
               <div className='carousel-body'>
                 {/* comentario */}
@@ -47,6 +47,8 @@ const Feedback = () => {
           )
         })}
       </Carousel>
+      </div>
+      </div>
     </Wrapper>
   )
 }
@@ -54,6 +56,17 @@ const Feedback = () => {
 const Wrapper = styled.div`
 *{
   font-family: 'Avenir LT Std', sans-serif;
+}
+.gradient{
+  padding-top: 60px;
+  background: radial-gradient(40% 10% at 5% 10%, rgba(51, 153, 153, 0.35) 0%, rgba(128, 202, 203, 0) 80%),
+  radial-gradient(40% 10% at 60% 10%, rgba(255, 153, 51, 0.35) 0%, rgba(255, 204, 153, 0) 100%);
+  border-radius: 20px 0px 0px 0px;
+}
+.carousel-cont{
+  background: #000B28;
+  width: auto;
+  height: 750px;
 }
 .carousel .carousel-indicators button{
   width: 10px; 
@@ -122,7 +135,6 @@ background: linear-gradient(89.63deg, #339999 10.13%, #FF9933 90.06%);
   align-items: center;
   justify-content:center;
   font-weight: 600;
-  font-size: 37px;
   line-height: 52px;
   background: linear-gradient(90.17deg, rgba(255, 255, 255, 0.9) 2.49%, rgba(51, 153, 153, 0.9) 31.87%, rgba(255, 153, 51, 0.702) 48.3%, rgba(255, 255, 255, 0.9) 85.64%), #FFFFFF;
   -webkit-background-clip: text;
@@ -134,6 +146,7 @@ background: linear-gradient(89.63deg, #339999 10.13%, #FF9933 90.06%);
 .comment-text p{
   width: fit-content;
   height: fit-content;
+  font-size: 37px;
 }
 
 .author-info{
@@ -151,7 +164,7 @@ background: linear-gradient(89.63deg, #339999 10.13%, #FF9933 90.06%);
 }
 
 @media only screen and (max-width: 850px){
-  .comment-text{
+  .comment-text p{
     font-size: 25px;
   }
 }
@@ -173,9 +186,12 @@ background: linear-gradient(89.63deg, #339999 10.13%, #FF9933 90.06%);
 
   @media only screen and (max-width: 420px){
     .comment-text{
-    font-size: 15px;
+    font-size: 10px !important;
     line-height: 22px;
     margin: 80px auto 10px auto;
+  }
+  .comment-text p{
+    font-size: 15px !important;
   }
   .carousel-style{
     height: 500px !important;

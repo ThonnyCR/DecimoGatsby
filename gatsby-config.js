@@ -8,8 +8,9 @@ require("dotenv").config({
  */
 module.exports = {
   siteMetadata: {
-    title: `Decimo`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: `Decimo Technology Solutions`,
+    siteUrl: `http://localhost:8001/`,
+    description: `Decimo site`,
   },
   plugins: ["gatsby-plugin-styled-components", "gatsby-plugin-image", "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
@@ -42,18 +43,10 @@ module.exports = {
         password: process.env.DRUPAL_PASSWORD
       },
     },
+    includeRoutes:[
+      '**/form',
+      '**/form_submission',
+    ],
   },
- /*  {
-    resolve: `gatsby-plugin-webfonts`,
-    options: {
-      fonts: {
-        google: [
-          {
-            family: ""
-          }
-        ]
-      }
-    }
-  } */
 ]
 };

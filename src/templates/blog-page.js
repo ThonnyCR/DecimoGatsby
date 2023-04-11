@@ -4,8 +4,9 @@ import Layout from "../components/Layout";
 import styled from "styled-components";
 import slugify from "slugify";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
+import { SEO } from "../components/seo";
 
-const BlogPage = ({ data, pageContext }) => {
+const BlogPage = ({ data, pageContext } ) => {
   // data
   const { title, field_blog_page_subtitle: subtitle } =
     data.allNodeBlogPage.nodes[0];
@@ -57,7 +58,7 @@ const BlogPage = ({ data, pageContext }) => {
                           <h3>{title}</h3>
                         </Link>
                         <h4>a</h4>
-                        <p>{title}</p>
+                        <p dangerouslySetInnerHTML={main} />
                       </div>
                     </div>
                   </div>
@@ -86,6 +87,7 @@ const BlogPage = ({ data, pageContext }) => {
                     </Link>
                   </li>
                 ))}
+
                 {!isLast && (
                   <li>
                     <Link to={nextPage} rel="next">
@@ -100,8 +102,12 @@ const BlogPage = ({ data, pageContext }) => {
       </Wrapper>
     </Layout>
   );
+  
 };
 
+export const Head = ({pageContext}) => (
+  <SEO title={`Blog ${pageContext.currentPage === 0 ? "1" : pageContext.currentPage} - Decimo Technology Solutions`} pathname={`blog/${pageContext.currentPage === 0 ? "1" : pageContext.currentPage}`} description={`Blog page ${pageContext.currentPage === 0 ? "1" : pageContext.currentPage} of Decimo Technology Solutions`}/>
+)
 export const query = graphql`
   query ($skip: Int!, $limit: Int!) {
     allNodeBlogPage {
@@ -140,9 +146,6 @@ export const query = graphql`
 const Wrapper = styled.div`
   .blog-body {
     width:100%;
-    /* max-width: 1270px; */
-    /* padding-left:auto;
-    padding-left: auto; */
   }
 
   .blog-header {
@@ -158,10 +161,6 @@ const Wrapper = styled.div`
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     grid-auto-rows: minmax(320px, auto);
-    /* display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: space-around; */
-    /* width: 1270px; */
     justify-items: center;
     max-width: 1270px;
     gap:40px;
@@ -170,24 +169,26 @@ const Wrapper = styled.div`
   }
 
   .card-post {
-    transition: 0.3s;
+    transition: 0.3s ease;
     width: 320px;
     height: 320px;
     display: inline-block;
-    /* margin-bottom: 57px; */
+    a{
+      color:black;
+    }
   }
 
   .card-post:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
-    /* border-top:5px; */
     border-top-style: solid;
     border-image-source: linear-gradient(
       89.63deg,
       #339999 5.4%,
       #ff9933 49.53%
     );
+    transition: 0.3s ease;
     border-image-slice: 1;
     border-width: 5px;
   }
@@ -195,6 +196,7 @@ const Wrapper = styled.div`
   .card-post-container {
     border: 1px solid #e7eaee;
     height: 100%;
+    padding: 17px 16px;
   }
 
   .card-post-container:hover {
@@ -210,14 +212,34 @@ const Wrapper = styled.div`
     border-width: 5px;
   }
 
-  .card-post-container {
-    padding: 17px 16px;
-  }
-
   .card-post-body {
-    padding: 0px 40px 18px 40px;
+    display:flex;
+    flex-direction: column;
+    padding: 0px 30px 18px 30px;
     width: 100%;
   }
+
+  .card-post-body h3{
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    line-clamp:2;
+    overflow:hidden;
+    margin-top:30px;
+  }
+  
+  .card-post-body p{
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:3;
+    line-clamp:3;
+    overflow:hidden;
+  }
+
+  .card-post-body h4{
+    margin-top:5px;
+  }
+
   .card-post-header {
     height: 81px;
     border-radius: 25px;
@@ -234,17 +256,8 @@ const Wrapper = styled.div`
     justify-content: center;
   }
 
-  .blog-navigation-container {
-    /* display: flex;
-    width: 300px; */
-  }
-
   .blog-navigation-container a {
-    /* display: block;
-    text-align:center;
-    font-weight: bold;
-    padding:13px;
-    font-size:25px; */
+    color:black;
   }
 
   .blog-navigation-container a:hover {

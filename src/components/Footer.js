@@ -83,8 +83,14 @@ const Footer = () => {
 const Wrapper = styled.div`
 /*CSS if main containers*/
 .main{
+    height: 400px;
     display: grid;
     place-items: center;
+      background: radial-gradient(8% 50% at 10% 55%, rgba(51, 153, 153, 0.35) 0%, rgba(128, 202, 203, 0) 100%),
+      radial-gradient(50% 50% at 80% 50%, rgba(51, 153, 153, 0.35) 0%, rgba(128, 202, 203, 0) 100%),
+              radial-gradient(30% 50% at 30% 55%, rgba(255, 153, 51, 0.35) 0%, rgba(255, 204, 153, 0) 100%);
+    transform: translate(0%, -10%);
+    margin-bottom: 0px;
 }
 .footer{
     width: 85%;
@@ -115,6 +121,9 @@ const Wrapper = styled.div`
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
     padding: 20px 120px 40px 120px;
+    a{
+      color:black;
+    }
 }
 
 .column1 {
