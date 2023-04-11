@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
+import ContactForm from '../components/ContactForm'
 
 const ContactPage = ({data = []}) => {
 
@@ -26,6 +27,7 @@ const ContactPage = ({data = []}) => {
                             </h3>
                         </div>
                         <div className="section-2">
+                            <ContactForm/>
                         </div>
                     </div>
                 </main>
@@ -45,7 +47,8 @@ const Wrapper = styled.div`
     .contact-section{
         display:grid;
         grid-template-columns: 1fr 1fr;
-        max-width:992px;
+        max-width:1200px;
+        gap:80px;
     }
 
     .section-1{
