@@ -5,6 +5,8 @@ import styled from "styled-components";
 import slugify from "slugify";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
+import Newsletter from "../components/Newsletter";
+import { Container, Row, Col } from 'react-bootstrap';
 
 const BlogPage = ({ data, pageContext } ) => {
   // data
@@ -99,6 +101,14 @@ const BlogPage = ({ data, pageContext } ) => {
             </div>
           </section>
         </main>
+        <Container>
+          <p className='newsletter-text'>Subscribe to our blog and get notified</p>
+              <Row>
+                <Col className="newsletter d-flex justify-content-center">
+                  <Newsletter/>
+                </Col>
+              </Row>
+        </Container>
       </Wrapper>
     </Layout>
   );
@@ -279,6 +289,18 @@ const Wrapper = styled.div`
     font-weight: bold;
     padding: 13px;
     font-size: 25px;
+  }
+  .newsletter{
+    margin-top: -20px;
+  }
+  .newsletter-text{
+    padding-top: 40px;
+    font-family: 'Avenir LT Std';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    text-align: center;
   }
 `;
 

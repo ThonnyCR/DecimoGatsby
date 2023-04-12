@@ -4,6 +4,8 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import slugify from "slugify";
+import Newsletter from './Newsletter'
+import { Container, Row, Col } from 'react-bootstrap';
 
 
 export const query = graphql`
@@ -80,8 +82,15 @@ const HomeBlogPosts = (props) => {
                             <p>{props.link}</p>
                         </Link>
                     </div>
+                    <Container>
+                    <p className='newsletter-text'>Subscribe to our blog and get notified</p>
+                      <Row>
+                        <Col className="newsletter d-flex justify-content-center">
+                          <Newsletter/>
+                        </Col>
+                      </Row>
+                    </Container>      
             </section>
-
         </Wrapper>
     )
 }
@@ -207,6 +216,18 @@ font-size: 47px !important;
   .posts-link p{
     display: inline-block;
     color: black;
+  }
+  .newsletter{
+    margin-top: -20px;
+  }
+  .newsletter-text{
+    padding-top: 40px;
+    font-family: 'Avenir LT Std';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    text-align: center;
   }
 `
 export default HomeBlogPosts
