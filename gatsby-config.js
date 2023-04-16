@@ -38,7 +38,15 @@ module.exports = {
     options: {
       baseUrl: `https://decimodrupal.lndo.site/`,
       apiBase: `jsonapi`, // optional, defaults to `jsonapi`
+      basicAuth:{
+        username: process.env.DRUPAL_USERNAME,
+        password: process.env.DRUPAL_PASSWORD
+      },
     },
+    includeRoutes:[
+      '**/form',
+      '**/form_submission',
+    ],
   },
 ]
 };

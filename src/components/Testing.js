@@ -3,51 +3,42 @@ import { Carousel } from 'react-bootstrap';
 import { graphql, useStaticQuery } from 'gatsby';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 export const query = graphql`
 query{
-  allNodePartenerComment {
+  allNodePruebita {
     nodes {
       title
-      field_partner_coment_text
-      field_partner_charge
+      body {
+        processed
+      }
+      relationships {
+        field_testing_svg {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED)
+            }
+          }
+        }
+      }
     }
   }
 }
 `
 //recordar las props
 const Testing = () => {
-  const data = useStaticQuery(query).allNodePartenerComment.nodes;
+  const data = useStaticQuery(query).allNodePruebita.nodes[0];
   console.log(data);
+  const body = {__html:  data.body.processed}
   return (
     <Wrapper>
       Testing!
-      <div className='upper-line'></div>
-      <Carousel fade={true} controls={false} className='carousel-style'>
-
-        {data.map((comment, index) => {
-          console.log(index);
-          {/* aqui adentro va toda la info de cada entrada */ }
-          return (
-            <Carousel.Item key={index}>
-              <div className='car-header'>
-                <p className='carousel-title'>{/* props.title */}What our partners are saying</p>
-                <p className='carousel-subtitle'>{/* props.subtitle */} Lorem ipsum dolor sit amet, consectetur adipiscing elit,.</p>
-              </div>
-              <div className='carousel-body'>
-                {/* comentario */}
-                <div className='comment-text'>
-                  <p>{comment.field_partner_coment_text}</p>
-                </div>
-                {/* nombre de la persona y su cargo */}
-                <div className='author-info'>
-                  <p>{comment.title}  |  <span className='charge'>{comment.field_partner_charge}</span></p>
-                </div>
-              </div>
-            </Carousel.Item>
-          )
-        })}
-      </Carousel>
+      <div dangerouslySetInnerHTML={{
+              __html: body.processed,
+            }}/>
+      <GatsbyImage
+      image={getImage(data.relationships.field_testing_svg)}/>
     </Wrapper>
   )
 }

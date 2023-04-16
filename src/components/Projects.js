@@ -26,6 +26,7 @@ const Projects = (props) => {
   const projects = useStaticQuery(query).allNodeProjects.nodes;
   return (
     <Wrapper>
+      <div className='gradient'>
       <div className='projects'>
         {/* titulo y subtitulo */}
         <div className='title-container'>
@@ -48,11 +49,18 @@ const Projects = (props) => {
           })}
         </div>
       </div>
+      </div>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
+.gradient{
+  background: radial-gradient(50% 50% at 100% 50%, rgba(51, 153, 153, 0.35) 0%, rgba(128, 202, 203, 0) 100%),
+              radial-gradient(50% 50% at 50% 50%, rgba(255, 153, 51, 0.35) 0%, rgba(255, 204, 153, 0) 100%);
+}
+              
+
     .projects{
         width: 90%;
         background-color: white;
