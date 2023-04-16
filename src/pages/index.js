@@ -1,9 +1,10 @@
 import * as React from "react"
 import Layout from "../components/Layout"
-import { Script } from "gatsby"
+// import { Script } from "gatsby"
 import AboutUs from "../components/AboutUs"
 import TeamMembers from "../components/TeamMembers"
 import Feedback from "../components/Feedback"
+<<<<<<< HEAD
 import ServicesandTechs from "../components/ServicesandTechs"
 import { graphql } from 'gatsby'
 import PrimarySection from "../components/PrimarySection"
@@ -42,6 +43,23 @@ const IndexPage = ({ data = [] }) => {
         </div>
       </main>
     </Layout>
+=======
+import Newsletter from "../components/Newsletter"
+const IndexPage = () => {
+  //query**
+
+  return (
+      <Layout>
+        <main>
+            <div>
+              <Feedback/>
+              <AboutUs/>
+              <TeamMembers/>
+              <Newsletter/>
+            </div>
+        </main>
+      </Layout>
+>>>>>>> origin/HilderBranch
   )
 }
 

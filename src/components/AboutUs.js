@@ -83,8 +83,6 @@ const AboutUs = () => {
                     </div>
                 </div>
             </div>
-
-
          </Wrapper>
      )
  }
