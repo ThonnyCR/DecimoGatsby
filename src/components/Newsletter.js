@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
-import '../styles/sweetalert2-custom.css';
+import '../assets/css/sweetalert2-custom.css';
 
 async function enviarDatos(datos){
     try{
