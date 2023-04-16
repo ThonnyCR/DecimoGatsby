@@ -36,7 +36,7 @@ const IndexPage = ({ data = [] }) => {
           <Projects
             title={homeinfo.field_home_projects_title}
             subtitle={homeinfo.field_home_projects_subtitle} />
-          <AboutUs />
+          <AboutUs id='aboutus' />
           <TeamMembers
             title="Our global team" />
           <HomeBlogPosts
@@ -47,7 +47,10 @@ const IndexPage = ({ data = [] }) => {
           title = {homeinfo.field_home_open_positions_title}/>
         </div>
       </main>
-      <Testing/>
+      <Testing
+      class='red-txt'/>
+     <Testing
+     class='blue-txt'/> 
     </Layout>
   )
 }
