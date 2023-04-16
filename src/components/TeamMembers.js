@@ -65,7 +65,7 @@ const TeamMembers = (props) => {
                 </div>
                 {/* iconos de la card */}
                 <div className='icons-container'>
-                  <GatsbyImage
+                    <GatsbyImage
                     image={getImage(member.relationships.field_team_member_icons[0].localFile)}
                     alt='Icon'
                     className='card-icon'

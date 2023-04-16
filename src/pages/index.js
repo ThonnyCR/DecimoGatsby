@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useContext, useEffect } from "react";
 import Layout from "../components/Layout"
 // import { Script } from "gatsby"
 import AboutUs from "../components/AboutUs"
@@ -14,7 +15,18 @@ import HomeBlogPosts from "../components/HomeBlogPosts"
 import Testing from "../components/Testing"
 const IndexPage = ({ data = [] }) => {
 
+  const { scrollTo, setScrollTo } = useContext(ScrollContext);
   const homeinfo = data.allNodeHome.nodes[0];
+  
+  useEffect(() => {
+    if (scrollTo) {
+      const element = document.getElementById("solutions");
+      console.log(element)
+      element.scrollIntoView({ behavior: "smooth" });
+
+      setScrollTo(""); // scrollTo reset
+    }
+  }, [scrollTo, setScrollTo]);
 
   return (
     <Layout>
@@ -27,9 +39,13 @@ const IndexPage = ({ data = [] }) => {
           learnmore={homeinfo.field_home_learn_more}
           image={homeinfo.relationships.field_home_image} />
         <div>
-          <ServicesandTechs
-            title={homeinfo.field_home_services_title}
-            subtitle={homeinfo.field_home_services_subtitle} />
+          <section id="solutions">
+            <div style={{ height: "100vh" }}>
+              <ServicesandTechs
+                title={homeinfo.field_home_services_title}
+                subtitle={homeinfo.field_home_services_subtitle} />
+            </div>
+          </section>
           <Feedback
             title={homeinfo.field_home_feedback_title}
             subtitle={homeinfo.field_home_feedback_subtitle} />

@@ -1,5 +1,7 @@
 const setupJobs = (jobs) => {
   const allJobs = {};
+  
+  //Count the number of jobs
   jobs.forEach((job) => {
     const oneJob = job.relationships.field_job_department;
     if (allJobs[oneJob.name]) {
@@ -9,6 +11,7 @@ const setupJobs = (jobs) => {
     }
   });
 
+  //Sort alphabetically
   const newJobs = Object.entries(allJobs).sort((a, b) => {
     const [firsJob] = a;
     const [secondJob] = b;

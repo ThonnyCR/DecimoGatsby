@@ -1,4 +1,4 @@
-import { graphql, Link, link } from "gatsby";
+import { graphql, Link } from "gatsby";
 import React from "react";
 import Layout from "../components/Layout";
 import styled from "styled-components";
@@ -7,6 +7,7 @@ import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
 import Newsletter from "../components/Newsletter";
 import { Container, Row, Col } from 'react-bootstrap';
+import PaginationBlog from "../components/PaginationBlog";
 
 const BlogPage = ({ data, pageContext } ) => {
   // data
@@ -16,22 +17,18 @@ const BlogPage = ({ data, pageContext } ) => {
 
   // paginator
   const { currentPage, numPages } = pageContext;
-  const isFirst = currentPage === 1;
-  const isLast = currentPage === numPages;
-  const prevPage =
-    currentPage - 1 === 1 ? "/blog" : (currentPage - 1).toString();
-  const nextPage = (currentPage + 1).toString();
 
   return (
     <Layout>
       <Wrapper>
         <main>
           {/* header */}
+          { }
           <section className="blog-header">
             <h2>{title}</h2>
             <p className="blog-subtitle">{subtitle}</p>
           </section>
-          {/* Pagination */}
+          {/* Blogs */}
           <section className="blog-body">
             <div className="cards-container">
               {posts.map((post, index) => {
@@ -41,12 +38,13 @@ const BlogPage = ({ data, pageContext } ) => {
                   relationships: { field_header_image: image },
                 } = post;
 
-                const main = { __html: value };
+                // const main = { __html: value };
                 const slug = slugify(title, { lower: true });
                 const cardImage = getImage(image.localFile.childImageSharp);
 
                 return (
                   <div key={index} className="card-post">
+                    <div className="top-gradient"></div>
                     <div className="card-post-container">
                       <div className="card-post-header">
                         <GatsbyImage
@@ -57,10 +55,10 @@ const BlogPage = ({ data, pageContext } ) => {
                       </div>
                       <div className="card-post-body">
                         <Link to={`/blog/${slug}`}>
-                          <h3>{title}</h3>
+                          <h5>{title}</h5>
                         </Link>
-                        <h4>a</h4>
-                        <p dangerouslySetInnerHTML={main} />
+                        {/* <p dangerouslySetInnerHTML={main} /> */}
+                        <p>{summary}</p>
                       </div>
                     </div>
                   </div>
@@ -68,38 +66,10 @@ const BlogPage = ({ data, pageContext } ) => {
               })}
             </div>
           </section>
+          {/* Pagination */}
           <section className="blog-navigation">
-            <div className="blog-navigation-container">
-              <ul>
-                {!isFirst && (
-                  <li>
-                    <Link to={prevPage} rel="prev">
-                      Prev
-                    </Link>
-                  </li>
-                )}
-
-                {Array.from({ length: numPages }, (_, i) => (
-                  <li key={i}>
-                    <Link
-                      key={`pagination-number${i + 1}`}
-                      to={`/blog/${i === 0 ? "" : i + 1}`}
-                    >
-                      {i + 1}
-                    </Link>
-                  </li>
-                ))}
-
-                {!isLast && (
-                  <li>
-                    <Link to={nextPage} rel="next">
-                      Next
-                    </Link>
-                  </li>
-                )}
-              </ul>
-            </div>
-          </section>
+          <PaginationBlog currentPage={currentPage} numPages={numPages} />
+        </section>
         </main>
         <Container>
           <p className='newsletter-text'>Subscribe to our blog and get notified</p>
@@ -160,7 +130,8 @@ const Wrapper = styled.div`
 
   .blog-header {
     text-align: center;
-    margin-bottom: 90px;
+    margin-bottom: 75px;
+    margin-top:75px;
   }
 
   .blog-subtitle {
@@ -179,41 +150,46 @@ const Wrapper = styled.div`
   }
 
   .card-post {
-    transition: 0.3s ease;
-    width: 320px;
-    height: 320px;
-    display: inline-block;
-    a{
-      color:black;
-    }
-  }
+  position: relative;
+  transition: 0.3s ease;
+  width: 320px;
+  height: 320px;
+  display: inline-block;
+  background: transparent;
+  border: 1px solid #E7EAEE;
+}
 
-  .card-post:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    border-top-style: solid;
-    border-image-source: linear-gradient(
-      89.63deg,
-      #339999 5.4%,
-      #ff9933 49.53%
-    );
-    transition: 0.3s ease;
-    border-image-slice: 1;
-    border-width: 5px;
-  }
+.card-post a {
+  color: black;
+}
+
+.card-post::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background-image: linear-gradient(89.63deg, #339999 5.4%, #ff9933 49.53%);
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.card-post:hover {
+  background: #FFFFFF;
+  box-shadow: 0px 48px 140px rgba(57, 59, 106, 0.15);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.card-post:hover::before {
+  opacity: 1;
+}
 
   .card-post-container {
-    border: 1px solid #e7eaee;
+    /* border: 1px solid #E7EAEE; */
     height: 100%;
     padding: 17px 16px;
-  }
-
-  .card-post-container:hover {
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 0;
-    border-top: 0;
   }
 
   .border-gradient {
@@ -225,29 +201,31 @@ const Wrapper = styled.div`
   .card-post-body {
     display:flex;
     flex-direction: column;
-    padding: 0px 30px 18px 30px;
+    padding: 0px 20px 18px 20px;
     width: 100%;
+    overflow: hidden;
+    position: relative;
   }
 
-  .card-post-body h3{
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:2;
-    line-clamp:2;
-    overflow:hidden;
-    margin-top:30px;
-  }
-  
-  .card-post-body p{
+  .card-post-body h5{
     display:-webkit-box;
     -webkit-box-orient:vertical;
     -webkit-line-clamp:3;
     line-clamp:3;
     overflow:hidden;
+    margin-top:17px;
   }
-
-  .card-post-body h4{
-    margin-top:5px;
+  
+  .card-post-body p{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp:4;
+    /* white-space: nowrap; */
   }
 
   .card-post-header {
@@ -264,31 +242,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .blog-navigation-container a {
-    color:black;
-  }
-
-  .blog-navigation-container a:hover {
-    color: #ff9933;
-  }
-
-  .blog-navigation-container ul {
-    list-style-type: none;
-    overflow: hidden;
-  }
-
-  .blog-navigation-container ul li {
-    float: left;
-  }
-
-  .blog-navigation-container ul li a {
-    display: block;
-    text-align: center;
-    font-weight: bold;
-    padding: 13px;
-    font-size: 25px;
+    margin: 75px 0 75px 0;
   }
   .newsletter{
     margin-top: -20px;

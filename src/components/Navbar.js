@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext,navigate  } from "react";
 import styled from "styled-components";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import { ScrollContext } from "../contexts/ScrollContext";
 
 export const query = graphql`
   query getNodeNavbar {
@@ -23,13 +24,43 @@ export const query = graphql`
     }
   }
 `;
-const Navbar = () => {
+const Navbar = (props) => {
   const [clicked, setClicked] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const { setScrollTo } = useContext(ScrollContext);
+
+  const handleNavLinkClick = (section) => {
+    setScrollTo(section);
+    handleClick();
+  };
 
   const handleClick = () => {
-    // cuando esta true lo pasa a false y viceversa
     setClicked(!clicked);
+    // props.toggleBodyScroll(!clicked);
+    setShowOverlay(!showOverlay);
   };
+
+  useEffect(() => {
+    
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+  
+    window.addEventListener("resize", handleResize);
+  
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (windowWidth > 1350 && clicked) {
+      // props.toggleBodyScroll(false);
+      setClicked(false);
+      setShowOverlay(false);
+    }
+  }, [windowWidth, clicked, props]);
 
   const data = useStaticQuery(query);
   const items = data.allNodeNavbar.nodes[0].field_navbaritems;
@@ -56,13 +87,15 @@ const Navbar = () => {
                 </IconContext.Provider>
               </span>
             </li>
+              {/* Home */}
             <li className="nav-item">
               <Link to="/" className="menu-link" onClick={handleClick}>
                 {items[0]}
               </Link>
             </li>
+              {/* Solutions */}
             <li className="nav-item">
-              <Link to="/" className="menu-link" onClick={handleClick}>
+              <Link to="/" className="menu-link" onClick={() => handleNavLinkClick("solutions")}>
                 {items[1]}
               </Link>
             </li>
@@ -104,6 +137,7 @@ const Navbar = () => {
           </IconContext.Provider>
         </div>
       </header>
+      <div className={`overlay ${!showOverlay ? '' : 'active'}`}></div>
     </Wrapper>
   );
 };
@@ -154,6 +188,7 @@ const Wrapper = styled.section`
     border-radius: 25px;
     background-color: #ff9933;
     border: none;
+    transition: 0.4s ease;
   }
 
   .btn-contact .menu-link {
@@ -191,6 +226,7 @@ const Wrapper = styled.section`
   @media (max-width: 1350px) {
     .navbar {
       padding: 30px 50px;
+      border: 1px solid #E7EAEE;
     }
 
     .hamburger {
@@ -204,14 +240,15 @@ const Wrapper = styled.section`
     .nav-menu {
       display: block;
       position: fixed;
-      right: -50%;
+      right: -320px;
       top: 0;
       gap: 0;
       flex-direction: column;
       background-color: #339999;
-      width: 50%;
+      width: 320px;
       text-align: right;
-      transition: 0.3s ease;
+      -webkit-transition: .5s ease;
+      transition: .5s ease;
       height: 100%;
       z-index: 3;
     }
@@ -222,7 +259,7 @@ const Wrapper = styled.section`
     }
 
     .nav-item {
-      margin: 50px 0px;
+      margin: 20px 0px;
       padding-right: 35px;
     }
 
@@ -232,6 +269,24 @@ const Wrapper = styled.section`
 
     .nav-menu.active {
       right: 0% !important;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 2;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .overlay.active {
+      opacity: 1 !important;
+      visibility: visible !important;
     }
 
     .nav-menu .menu-link {

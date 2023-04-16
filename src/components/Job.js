@@ -59,7 +59,7 @@ const Wrapper = styled.main`
 
   .job-card:hover{
     background: #FFFFFF;
-    box-shadow: 0px 48px 140px -48px rgba(57, 59, 106, 0.08);
+    box-shadow: 0px 48px 140px rgba(57, 59, 106, 0.16);
   }
   .job-header{
     flex: 0 0 80%;
@@ -79,7 +79,6 @@ const Wrapper = styled.main`
     border-radius: 24px;
     padding: 5px 18px;
     color: #339999;
-    /* font-weight:700; */
   }
 
   .blog-post-body-content{
@@ -96,13 +95,14 @@ const Wrapper = styled.main`
     border-radius: 25px;
     background-color: #339999;
     border: solid 1px #339999;
+    transition: 0.3s;
   }
 
   .btn-link {
     font-size: 16px;
     color: black;
     text-decoration: none;
-    transition: 0.4s ease;
+    transition: 0.3s;
   }
 
   .btn-link:hover {
@@ -127,20 +127,22 @@ const Wrapper = styled.main`
     .job-header, .job-body {
       flex: 0 0 100%;
     }
+
     .job-body{
       display:flex;
       align-items:center;
       text-align:start;
       margin-top: 32px;
     }
-  }
 
-  @media (max-width: 768px) {
     .job-text-flex{
       display:flex;
-      /* gap:24px; */
-      align-items:start;
-      flex-direction:column;
+      gap:12px;
+    }
+
+    .job-card{
+      margin-left:35px;
+      margin-right:35px;
     }
   }
 `;
