@@ -30,7 +30,8 @@ const ToTop = () => {
       className={`scroll-to-top-button${showButton ? ' show' : ''}`}
       onClick={scrollToTop}
     >
-      &#9650;
+        &#8593;
+      
     </button>
     </Wrapper>
    
@@ -43,9 +44,9 @@ const Wrapper = styled.div`
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #000;
-  color: #fff;
-  border: none;
+  background-color:#FF9933;
+  color: #000B28;
+  border: solid #339993 0.5px;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -56,6 +57,7 @@ const Wrapper = styled.div`
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   z-index: 1000;
+  font-size: 50px;
 }
 
 .scroll-to-top-button.show {

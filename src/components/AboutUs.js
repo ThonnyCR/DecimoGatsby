@@ -38,7 +38,7 @@ const AboutUs = () => {
     const allData = useStaticQuery(query);
     const data = allData.allNodeAboutUs.nodes[0];
     return (
-        <Wrapper>
+        <Wrapper id='aboutus'>
             <div className='aboutus-cont'>
                 {/* container del logo con  su fondo*/}
                 <div className='section-1'>
@@ -170,8 +170,11 @@ const AboutUs = () => {
     }
 
     .icons-container{
-        margin: 40px auto;
+        margin: 20px auto;
         display: flex;
+        align-items:center;
+        justify-content: center;
+        gap: 20px;
     }
     .logo-cont, .section-1, .aboutus-text-container, .aboutus-cont, .aboutus-maintext, .aboutus-author, .aboutus-icon{
         margin: auto;

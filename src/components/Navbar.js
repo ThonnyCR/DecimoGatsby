@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext,navigate  } from "react";
 import styled from "styled-components";
-import { useStaticQuery, graphql, Link } from "gatsby";
+import { useStaticQuery, graphql, Link, Location, navigate } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { ScrollContext } from "../contexts/ScrollContext";
+import { Link as ReactLink } from "react-scroll";
 
 export const query = graphql`
   query getNodeNavbar {
@@ -67,79 +68,153 @@ const Navbar = (props) => {
   const image = getImage(
     data.allNodeNavbar.nodes[0].relationships.field_navbarimage.localFile
   );
-  return (
-    <Wrapper>
-      <header className="navbar">
-        {/* img */}
-        <div className="nav-logo">
-          <Link to="/">
-            <GatsbyImage image={image} alt="Decimo logo" className="logo" />
-          </Link>
-        </div>
-
-        {/* items */}
-        <nav className="nav-items">
-          <ul className={`nav-menu ${clicked ? "active" : ""}`}>
-            <li className={`nav-item btn-fatimes`}>
-              <span className="btn-fatimes-cursor">
-                <IconContext.Provider value={{ size: 25, color: "white" }}>
-                    <FaTimes onClick={handleClick} />
-                </IconContext.Provider>
-              </span>
-            </li>
-              {/* Home */}
-            <li className="nav-item">
-              <Link to="/" className="menu-link" onClick={handleClick}>
-                {items[0]}
-              </Link>
-            </li>
-              {/* Solutions */}
-            <li className="nav-item">
-              <Link to="/" className="menu-link" onClick={() => handleNavLinkClick("solutions")}>
-                {items[1]}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/" className="menu-link" onClick={handleClick}>
-                {items[2]}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/blog" className="menu-link" onClick={handleClick}>
-                {items[3]}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/" className="menu-link" onClick={handleClick}>
-                {items[4]}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <button className="btn-contact">
-                <Link
-                  to="/ContactPage"
-                  className="menu-link"
-                  onClick={handleClick}
-                >
-                  {items[5]}
+  const isHomePage = () =>{
+    return typeof window !== 'undefined' && window.location.pathname === '/';
+  }
+  if(isHomePage()){
+    return (
+      <Wrapper>
+        
+        <header className="navbar">
+          {/* img */}
+          <div className="nav-logo">
+            <Link to="/">
+              <GatsbyImage image={image} alt="Decimo logo" className="logo" />
+            </Link>
+          </div>
+  
+          {/* items */}
+          <nav className="nav-items">
+            
+            <ul className={`nav-menu ${clicked ? "active" : ""}`}>
+              <li className={`nav-item btn-fatimes`}>
+                <span className="btn-fatimes-cursor">
+                  <IconContext.Provider value={{ size: 25, color: "white" }}>
+                      <FaTimes onClick={handleClick} />
+                  </IconContext.Provider>
+                </span>
+              </li>
+              <li className="nav-item">
+                <Link to="/" className="menu-link" onClick={handleClick}>
+                  {items[0]}
                 </Link>
-              </button>
-            </li>
-            <li className="nav-space"></li>
-          </ul>
-        </nav>
-
-        <div className="hamburger" onClick={handleClick}>
-          <IconContext.Provider value={{ size: 25 }}>
-            <span>
-              <FaBars />
-            </span>
-          </IconContext.Provider>
-        </div>
-      </header>
-      <div className={`overlay ${!showOverlay ? '' : 'active'}`}></div>
-    </Wrapper>
-  );
+              </li>
+              <li className="nav-item">
+                <ReactLink to= "solutions" className="menu-link" spy={false} smooth={true} duration={100} offset={-100} onClick={() => {
+                    if (!isHomePage()) {
+                      window.location.href = '/';
+                    }
+                    
+                  }}>
+                  {items[1]}
+                </ReactLink>
+              </li>
+              <li className="nav-item">
+                <ReactLink to= "aboutus" className="menu-link" spy={false} smooth={true} duration={100} offset={-100}>
+                  {items[2]}
+                </ReactLink>
+              </li>
+              <li className="nav-item">
+                <Link to="/blog" className="menu-link" onClick={handleClick}>
+                  {items[3]}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <ReactLink to= "solutions" className="menu-link" spy={true} smooth={true} duration={100} offset={-100}>
+                  {items[4]}
+                </ReactLink>
+              </li>
+              <li className="nav-item">
+                <button className="btn-contact">
+                  <Link
+                    to="/ContactPage"
+                    className="menu-link"
+                    onClick={handleClick}
+                  >
+                    {items[5]}
+                  </Link>
+                </button>
+              </li>
+              <li className="nav-space"></li>
+            </ul>
+            
+          </nav>
+  
+          <div className="hamburger" onClick={handleClick}>
+            <IconContext.Provider value={{ size: 25 }}>
+              <span>
+                <FaBars />
+              </span>
+            </IconContext.Provider>
+          </div>
+        </header>
+      </Wrapper>
+    );
+  } else{
+     return (
+      <Wrapper>
+        
+        <header className="navbar">
+          {/* img */}
+          <div className="nav-logo">
+            <Link to="/">
+              <GatsbyImage image={image} alt="Decimo logo" className="logo" />
+            </Link>
+          </div>
+  
+          {/* items */}
+          <nav className="nav-items">
+            
+            <ul className={`nav-menu ${clicked ? "active" : ""}`}>
+              <li className={`nav-item btn-fatimes`}>
+                <span className="btn-fatimes-cursor">
+                  <IconContext.Provider value={{ size: 25, color: "white" }}>
+                      <FaTimes onClick={handleClick} />
+                  </IconContext.Provider>
+                </span>
+              </li>
+              <li className="nav-item">
+                <Link to="/" className="menu-link" onClick={handleClick}>
+                  {items[0]}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/blog" className="menu-link" onClick={handleClick}>
+                  {items[3]}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <ReactLink to= "solutions" className="menu-link" spy={true} smooth={true} duration={100} offset={-100}>
+                  {items[4]}
+                </ReactLink>
+              </li>
+              <li className="nav-item">
+                <button className="btn-contact">
+                  <Link
+                    to="/ContactPage"
+                    className="menu-link"
+                    onClick={handleClick}
+                  >
+                    {items[5]}
+                  </Link>
+                </button>
+              </li>
+              <li className="nav-space"></li>
+            </ul>
+            
+          </nav>
+  
+          <div className="hamburger" onClick={handleClick}>
+            <IconContext.Provider value={{ size: 25 }}>
+              <span>
+                <FaBars />
+              </span>
+            </IconContext.Provider>
+          </div>
+        </header>
+      </Wrapper>
+    );
+  } 
 };
 
 const Wrapper = styled.section`
@@ -180,6 +255,7 @@ const Wrapper = styled.section`
 
   .menu-link:hover {
     color: #1b7e7e;
+    cursor:pointer;
   }
 
   .btn-contact {

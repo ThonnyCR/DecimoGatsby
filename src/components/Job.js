@@ -14,7 +14,7 @@ const Job = ({
   const main = { __html: jobBody }; //Body
 
   return (
-    <Wrapper>
+    <Wrapper id="jobs">
       <div className="job-card">
         <div className="job-header">
           <div className="job-text-flex">
