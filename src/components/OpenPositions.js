@@ -36,7 +36,7 @@ export const query = graphql`
     }
 `
 
-const OpenPositions = () => {
+const OpenPositions = (props) => {
 
     const cardData = useStaticQuery(query).allNodeOpenPositions.nodes;
     const sectionData = useStaticQuery(query).allNodeOpenPositionsSection.nodes[0];
@@ -44,6 +44,7 @@ const OpenPositions = () => {
     const descripcion_section = { __html: useStaticQuery(query).allNodeOpenPositionsSection.nodes[0].field_description_section.value }
     return (
         <Wrapper>
+            <h2>{props.title}</h2>
             <div className="openpositions-container">
                 <div className="section-1">
                     {cardData.map((cardData, index) => {

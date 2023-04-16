@@ -10,10 +10,10 @@ import PrimarySection from "../components/PrimarySection"
 import Projects from "../components/Projects"
 import { SEO } from "../components/seo"
 import OpenPositions from "../components/OpenPositions"
+import HomeBlogPosts from "../components/HomeBlogPosts"
 const IndexPage = ({ data = [] }) => {
 
   const homeinfo = data.allNodeHome.nodes[0];
-  console.log(homeinfo);
 
   return (
     <Layout>
@@ -38,7 +38,12 @@ const IndexPage = ({ data = [] }) => {
           <AboutUs />
           <TeamMembers
             title="Our global team" />
-          <OpenPositions/>
+          <HomeBlogPosts
+          title = {homeinfo.field_home_blog_title}
+          subtitle = {homeinfo.field_home_blog_subtitle}
+          link = {homeinfo.field_home_blog_link}/>
+          <OpenPositions
+          title = {homeinfo.field_home_open_positions_title}/>
         </div>
       </main>
     </Layout>
