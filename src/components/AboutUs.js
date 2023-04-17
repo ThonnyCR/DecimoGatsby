@@ -10,6 +10,9 @@ export const query = graphql`
       title
       field_about_us_main_text
       field_about_us_author_and_charge
+      field_about_us_link {
+        uri
+      }
       relationships {
         field_about_us_decimo_logo {
           localFile {
@@ -35,7 +38,7 @@ const AboutUs = () => {
     const allData = useStaticQuery(query);
     const data = allData.allNodeAboutUs.nodes[0];
     return (
-        <Wrapper>
+        <Wrapper id='aboutus'>
             <div className='aboutus-cont'>
                 {/* container del logo con  su fondo*/}
                 <div className='section-1'>
@@ -65,26 +68,30 @@ const AboutUs = () => {
                     </div>
                     {/* iconos de redes sociales */}
                     <div className='icons-container'>
+                        <a href={data.field_about_us_link[0].uri} target='_blank'>
                         <GatsbyImage
                             image={getImage(data.relationships.field_about_us_icons[0].localFile)}
                             alt='alt'
                             className='aboutus-icon'
                         />
+                        </a>
+                        <a href={data.field_about_us_link[1].uri} target='_blank'>
                         <GatsbyImage
                             image={getImage(data.relationships.field_about_us_icons[1].localFile)}
                             alt='alt'
                             className='aboutus-icon'
                         />
+                        </a>
+                        <a href={data.field_about_us_link[2].uri} target='_blank'>
                         <GatsbyImage
                             image={getImage(data.relationships.field_about_us_icons[2].localFile)}
                             alt='alt'
                             className='aboutus-icon'
                         />
+                        </a>
                     </div>
                 </div>
             </div>
-
-
          </Wrapper>
      )
  }
@@ -163,8 +170,11 @@ const AboutUs = () => {
     }
 
     .icons-container{
-        margin: 40px auto;
+        margin: 20px auto;
         display: flex;
+        align-items:center;
+        justify-content: center;
+        gap: 20px;
     }
     .logo-cont, .section-1, .aboutus-text-container, .aboutus-cont, .aboutus-maintext, .aboutus-author, .aboutus-icon{
         margin: auto;

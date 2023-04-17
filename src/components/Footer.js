@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { Link } from 'gatsby'
+import { Link as ReactLink } from "react-scroll";
 
 
 export const query = graphql`
@@ -33,9 +34,13 @@ export const query = graphql`
 `
 
 const Footer = () => {
+  const isHomePage = () =>{
+    return typeof window !== 'undefined' && window.location.pathname === '/';
+  }
     const allData = useStaticQuery(query);
     const data = allData.allNodeFooter.nodes[0];
-    return (
+    if(isHomePage()){
+      return (
         <Wrapper>
             <div className='main'>
             <div className='footer'>
@@ -47,8 +52,8 @@ const Footer = () => {
                                             alt='Logo'
                                             className='footer-logo'
                                             /></div></Link>
-                    <Link to='/'><div className="column2">{data.field_footeritems[0]}</div></Link>
-                    <Link to='/'><div className="column3">{data.field_footeritems[1]}</div></Link>
+                    <ReactLink to='aboutus' spy={false} smooth={true} duration={100} offset={-100}><div className="column2">{data.field_footeritems[0]}</div></ReactLink>
+                    <ReactLink to='solutions'  spy={false} smooth={true} duration={100} offset={-100}><div className="column3">{data.field_footeritems[1]}</div></ReactLink>
                     <Link to='/'> <div className="column4">{data.field_footeritems[2]}</div></Link>
                     <Link to='/ContactPage'><div className="column5">{data.field_footeritems[3]}</div></Link>
                 </div>
@@ -79,12 +84,63 @@ const Footer = () => {
             </div>
         </Wrapper>
     )
+    } else {
+      return (
+        <Wrapper>
+            <div className='main'>
+            <div className='footer'>
+                <hr className='footer-upper-line'></hr>
+                {/* logo and items section */}
+                <div className='first-section'>
+                    <Link to='/'><div className="column1"><GatsbyImage
+                                            image = {getImage(data.relationships.field_footerlogo.localFile)}
+                                            alt='Logo'
+                                            className='footer-logo'
+                                            /></div></Link>
+                    <Link to='/'><div className="column2">Home</div></Link>
+                    <Link to='/'> <div className="column4">{data.field_footeritems[2]}</div></Link>
+                    <Link to='/ContactPage'><div className="column5">{data.field_footeritems[3]}</div></Link>
+                </div>
+                <hr className='footer-lower-line'></hr>
+                {/* icons and copy right section */}
+                <div className='second-section'>
+                    {/* icons */}
+                    <div className='column-left'>
+                        <GatsbyImage
+                        image = {getImage(data.relationships.field_footericons[0].localFile)}
+                        alt='icon'
+                        className='footer-icon'/>
+                        <GatsbyImage
+                        image = {getImage(data.relationships.field_footericons[1].localFile)}
+                        alt='icon'
+                        className='footer-icon'/>
+                        <GatsbyImage
+                        image = {getImage(data.relationships.field_footericons[2].localFile)}
+                        alt='icon'
+                        className='footer-icon'/>
+                    </div>
+                    {/* copyright */}
+                    <div className='column-right'>
+                        <p>{data.field_footercopyright}</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </Wrapper>
+    )
+    }
 }
 const Wrapper = styled.div`
 /*CSS if main containers*/
 .main{
+    height: 400px;
     display: grid;
     place-items: center;
+      background: radial-gradient(8% 50% at 10% 55%, rgba(51, 153, 153, 0.35) 0%, rgba(128, 202, 203, 0) 100%),
+      radial-gradient(50% 50% at 80% 50%, rgba(51, 153, 153, 0.35) 0%, rgba(128, 202, 203, 0) 100%),
+              radial-gradient(30% 50% at 30% 55%, rgba(255, 153, 51, 0.35) 0%, rgba(255, 204, 153, 0) 100%);
+    transform: translate(0%, -10%);
+    margin-bottom: 0px;
 }
 .footer{
     width: 85%;
@@ -127,9 +183,15 @@ const Wrapper = styled.div`
 .column2 {
   grid-column: 3;
 }
+.column2:hover{
+  cursor: pointer;
+}
 
 .column3 {
   grid-column: 4;
+}
+.column3:hover{
+  cursor: pointer;
 }
 
 .column4 {

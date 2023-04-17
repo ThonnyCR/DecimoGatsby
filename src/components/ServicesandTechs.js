@@ -27,7 +27,7 @@ query{
 const ServicesandTechs = (props) => {
   const services = useStaticQuery(query).allNodeServiceAndTech.nodes;
   return (
-    <Wrapper>
+    <Wrapper id="solutions">
       {/* title of the section */}
       <div className='services-header'>
         <h2>{props.title}</h2>

@@ -20,6 +20,7 @@ const Feedback = (props) => {
   const data = useStaticQuery(query).allNodePartenerComment.nodes;
   return (
     <Wrapper>
+      <div className='gradient'>
       <div className='upper-line'></div>
       <div className='carousel-cont'>
       <Carousel fade={true} controls={false} className='carousel-style'>
@@ -47,6 +48,7 @@ const Feedback = (props) => {
         })}
       </Carousel>
       </div>
+      </div>
     </Wrapper>
   )
 }
@@ -54,6 +56,12 @@ const Feedback = (props) => {
 const Wrapper = styled.div`
 *{
   font-family: 'Avenir LT Std', sans-serif;
+}
+.gradient{
+  padding-top: 60px;
+  background: radial-gradient(40% 10% at 5% 10%, rgba(51, 153, 153, 0.35) 0%, rgba(128, 202, 203, 0) 80%),
+  radial-gradient(40% 10% at 60% 10%, rgba(255, 153, 51, 0.35) 0%, rgba(255, 204, 153, 0) 100%);
+  border-radius: 20px 0px 0px 0px;
 }
 .carousel-cont{
   background: #000B28;

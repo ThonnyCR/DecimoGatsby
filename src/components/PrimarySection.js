@@ -3,6 +3,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 import Button from './Button'
+import Newsletter from './Newsletter'
 
 const PrimarySection = (props) => {
     const maintitle = { __html: props.maintitle.value }
@@ -21,12 +22,14 @@ const PrimarySection = (props) => {
                         {props.learnmore + " >"}  
                     </Link>
                     </div>
+                        <Newsletter/>
                 </div>
                 <div className='image-section'>
                     <GatsbyImage
-                image = {getImage(props.image.localFile)}
-                alt = 'Home'
-                className='home-image'/>
+                        image = {getImage(props.image.localFile)}
+                        alt = 'Home'
+                        className='home-image'
+                    />
                 </div>
             </div>
         </Wrapper>
@@ -34,6 +37,9 @@ const PrimarySection = (props) => {
 }
 
 const Wrapper = styled.div`
+.newsletter{
+    padding-top: 30px;
+}
 .main-container{
     display: grid; 
     grid-template-columns: 1fr 1fr;

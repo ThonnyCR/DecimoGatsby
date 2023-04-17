@@ -1,6 +1,7 @@
 import * as React from "react"
+import { useContext, useEffect } from "react";
 import Layout from "../components/Layout"
-import { Script } from "gatsby"
+// import { Script } from "gatsby"
 import AboutUs from "../components/AboutUs"
 import TeamMembers from "../components/TeamMembers"
 import Feedback from "../components/Feedback"
@@ -11,9 +12,11 @@ import Projects from "../components/Projects"
 import { SEO } from "../components/seo"
 import OpenPositions from "../components/OpenPositions"
 import HomeBlogPosts from "../components/HomeBlogPosts"
+import Testing from "../components/Testing"
 const IndexPage = ({ data = [] }) => {
 
   const homeinfo = data.allNodeHome.nodes[0];
+  
 
   return (
     <Layout>
@@ -26,16 +29,16 @@ const IndexPage = ({ data = [] }) => {
           learnmore={homeinfo.field_home_learn_more}
           image={homeinfo.relationships.field_home_image} />
         <div>
-          <ServicesandTechs
-            title={homeinfo.field_home_services_title}
-            subtitle={homeinfo.field_home_services_subtitle} />
+              <ServicesandTechs
+                title={homeinfo.field_home_services_title}
+                subtitle={homeinfo.field_home_services_subtitle} />
           <Feedback
             title={homeinfo.field_home_feedback_title}
             subtitle={homeinfo.field_home_feedback_subtitle} />
           <Projects
             title={homeinfo.field_home_projects_title}
             subtitle={homeinfo.field_home_projects_subtitle} />
-          <AboutUs />
+          <AboutUs id='aboutus' />
           <TeamMembers
             title="Our global team" />
           <HomeBlogPosts
