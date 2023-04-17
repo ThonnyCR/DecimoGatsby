@@ -107,7 +107,7 @@ const Wrapper = styled.div`
 
     //Responsive del ContactPage
 
-    @media only screen and (max-width: 1250px) and (min-width: 413px){
+    @media only screen and (max-width: 1400px){
         .contact-section{
             grid-template-columns: 1fr;
         }

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import slugify from "slugify";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
+import FormBlogPage from "../components/FormBlogPage";
 
 const BlogPage = ({ data, pageContext } ) => {
   // data
@@ -98,6 +99,7 @@ const BlogPage = ({ data, pageContext } ) => {
               </ul>
             </div>
           </section>
+          <FormBlogPage/>
         </main>
       </Wrapper>
     </Layout>
