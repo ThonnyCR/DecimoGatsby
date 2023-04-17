@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext,navigate  } from "react";
+import React, { useState, useEffect  } from "react";
 import styled from "styled-components";
-import { useStaticQuery, graphql, Link, Location, navigate } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { IconContext } from "react-icons";
-import { ScrollContext } from "../contexts/ScrollContext";
 import { Link as ReactLink } from "react-scroll";
+import { IconContext } from "react-icons";
 
 export const query = graphql`
   query getNodeNavbar {
@@ -29,12 +28,6 @@ const Navbar = (props) => {
   const [clicked, setClicked] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const { setScrollTo } = useContext(ScrollContext);
-
-  const handleNavLinkClick = (section) => {
-    setScrollTo(section);
-    handleClick();
-  };
 
   const handleClick = () => {
     setClicked(!clicked);
@@ -100,12 +93,7 @@ const Navbar = (props) => {
                 </Link>
               </li>
               <li className="nav-item">
-                <ReactLink to= "solutions" className="menu-link" spy={false} smooth={true} duration={100} offset={-100} onClick={() => {
-                    if (!isHomePage()) {
-                      window.location.href = '/';
-                    }
-                    
-                  }}>
+                <ReactLink to= "solutions" className="menu-link" spy={false} smooth={true} duration={100} offset={-100}>
                   {items[1]}
                 </ReactLink>
               </li>
