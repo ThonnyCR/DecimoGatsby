@@ -80,6 +80,7 @@ const BlogPage = ({ data, pageContext } ) => {
                 </Col>
               </Row>
         </Container>
+        <FormBlogPage/>
       </Wrapper>
     </Layout>
   );

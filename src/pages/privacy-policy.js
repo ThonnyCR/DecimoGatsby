@@ -13,7 +13,7 @@ const PrivacyPolicy = ({data = []}) => {
   return (
     <PrivacyPolicyStyles>
       <Layout>
-        <main>
+        <main className='main-cont'>
           {/* Linea de color con gradient */}
           <hr className="lineColor"/>
           {/* Contenedor del logo de la empresa */}
@@ -32,6 +32,9 @@ const PrivacyPolicy = ({data = []}) => {
 
 const PrivacyPolicyStyles = styled.main`
 
+.main-cont{
+  margin-bottom: 100px;
+}
   //Estilo del contenedor del logo
   .imageContainer{
     background-color:#000B28;

@@ -94,8 +94,6 @@ const OpenPositions = (props) => {
                     </div>
                 </div>
             </div>
-            {/* Linea de color que separa el componente siguiente con este */}
-            <hr className="line-color"/>
         </Wrapper>
     )
 }
@@ -137,7 +135,7 @@ const Wrapper = styled.div`
     //Difuminado de colores en el background
     .background-gradient-color{
         //Color de abajo a la izquierda
-        background: radial-gradient(20% 40% at 5% 100%, rgba(51, 153, 153, 0.35) 0%, rgba(128, 202, 203, 0) 80%),
+        background: //radial-gradient(20% 40% at 5% 100%, rgba(51, 153, 153, 0.35) 0%, rgba(128, 202, 203, 0) 80%),
         //Color de arriba a la derecha
         radial-gradient(20% 40% at 78% 40%, rgba(255, 153, 51, 0.35) 0%, rgba(255, 204, 153, 0) 100%),
         //Color de arriba en el centro
