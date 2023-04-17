@@ -71,37 +71,6 @@ const BlogPage = ({ data, pageContext } ) => {
           <section className="blog-navigation">
           <PaginationBlog currentPage={currentPage} numPages={numPages} />
         </section>
-            <div className="blog-navigation-container">
-              <ul>
-                {!isFirst && (
-                  <li>
-                    <Link to={prevPage} rel="prev">
-                      Prev
-                    </Link>
-                  </li>
-                )}
-
-                {Array.from({ length: numPages }, (_, i) => (
-                  <li key={i}>
-                    <Link
-                      key={`pagination-number${i + 1}`}
-                      to={`/blog/${i === 0 ? "" : i + 1}`}
-                    >
-                      {i + 1}
-                    </Link>
-                  </li>
-                ))}
-
-                {!isLast && (
-                  <li>
-                    <Link to={nextPage} rel="next">
-                      Next
-                    </Link>
-                  </li>
-                )}
-              </ul>
-            </div>
-          <FormBlogPage/>
         </main>
         <Container>
           <p className='newsletter-text'>Subscribe to our blog and get notified</p>

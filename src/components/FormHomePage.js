@@ -72,6 +72,7 @@ function FormHomePage (){
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
+            "Authorization": "Basic " + btoa(process.env.GATSBY_DRUPAL_USERNAME + ":" + process.env.GATSBY_DRUPAL_PASSWORD)
         },
         body: JSON.stringify(formData),
         })
@@ -83,7 +84,9 @@ function FormHomePage (){
             }
         })
         .catch((error) => {
+            console.log(error);
             setError(true);
+
         });
     }
 
