@@ -13,6 +13,8 @@ import { SEO } from "../components/seo"
 import OpenPositions from "../components/OpenPositions"
 import HomeBlogPosts from "../components/HomeBlogPosts"
 import Testing from "../components/Testing"
+import FormHomePage from "../components/FormHomePage"
+
 const IndexPage = ({ data = [] }) => {
 
   const homeinfo = data.allNodeHome.nodes[0];
@@ -47,6 +49,7 @@ const IndexPage = ({ data = [] }) => {
           link = {homeinfo.field_home_blog_link}/>
           <OpenPositions
           title = {homeinfo.field_home_open_positions_title}/>
+          <FormHomePage/>
         </div>
       </main>
     </Layout>

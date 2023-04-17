@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
+import ContactForm from '../components/ContactForm'
 
 const ContactPage = ({data = []}) => {
 
@@ -32,6 +33,7 @@ const ContactPage = ({data = []}) => {
                         </div>
                         {/* //Section #2 que contiene el formulario de contacto */}
                         <div className="section-2">
+                            <ContactForm/>
                         </div>
                     </div>
                 </main>
@@ -52,8 +54,8 @@ const Wrapper = styled.div`
     .contact-section{
         display:grid;
         grid-template-columns: 1fr 1fr;
-        max-width: 1077px;
-        gap:50px;
+        max-width:1200px;
+        gap:80px;
     }
 
     .section-1{
@@ -112,7 +114,7 @@ const Wrapper = styled.div`
 
     //Responsive del ContactPage
 
-    @media only screen and (max-width: 1250px) and (min-width: 413px){
+    @media only screen and (max-width: 1400px){
         .contact-section{
             grid-template-columns: 1fr;
         }
