@@ -31,7 +31,6 @@ const Navbar = (props) => {
 
   const handleClick = () => {
     setClicked(!clicked);
-    // props.toggleBodyScroll(!clicked);
     setShowOverlay(!showOverlay);
   };
 
@@ -50,7 +49,6 @@ const Navbar = (props) => {
 
   useEffect(() => {
     if (windowWidth > 1350 && clicked) {
-      // props.toggleBodyScroll(false);
       setClicked(false);
       setShowOverlay(false);
     }
@@ -136,6 +134,7 @@ const Navbar = (props) => {
             </IconContext.Provider>
           </div>
         </header>
+        <div className={`overlay ${!showOverlay ? '' : 'active'}`}></div>
       </Wrapper>
     );
   } else{
@@ -200,6 +199,7 @@ const Navbar = (props) => {
             </IconContext.Provider>
           </div>
         </header>
+        <div className={`overlay ${!showOverlay ? '' : 'active'}`}></div>
       </Wrapper>
     );
   } 
