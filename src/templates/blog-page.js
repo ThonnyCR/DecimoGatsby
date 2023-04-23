@@ -8,6 +8,7 @@ import { SEO } from "../components/seo";
 import Newsletter from "../components/Newsletter";
 import { Container, Row, Col } from 'react-bootstrap';
 import PaginationBlog from "../components/PaginationBlog";
+import FormBlogPage from "../components/FormBlogPage";
 
 const BlogPage = ({ data, pageContext } ) => {
   // data
@@ -79,6 +80,7 @@ const BlogPage = ({ data, pageContext } ) => {
                 </Col>
               </Row>
         </Container>
+        <FormBlogPage/>
       </Wrapper>
     </Layout>
   );

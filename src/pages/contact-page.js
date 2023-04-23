@@ -2,9 +2,11 @@ import React from 'react'
 import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
+import ContactForm from '../components/ContactForm'
 
 const ContactPage = ({data = []}) => {
 
+    //Destructuracion y declaracion de los nodos que se traen con graphql
     const   headerTitle = data.allNodeContact.nodes[0].field_contact_header_title
     const   bodyTitle = { __html: data.allNodeContact.nodes[0].field_body_title.value}
     const   footerTitle = data.allNodeContact.nodes[0].field_contact_footer_title
@@ -14,18 +16,24 @@ const ContactPage = ({data = []}) => {
             <Layout>
                 <main className="contact-container">
                     <div className="contact-section">
+                        {/* Seccion #1 que contiene los titulos y descripcion de la pagina de contactos */}
                         <div className="section-1">
+                            {/* Titulo de la seccion #1 */}
                             <h1 className="header-title-style">
                                 {headerTitle}
                             </h1>
-                            <h2 className="body-title-style">
-                                <div dangerouslySetInnerHTML={bodyTitle}/>
-                            </h2>
+                            {/* Subtitulo de la seccion #1 */}
+                            <div className="body-title-style">
+                                <h2 dangerouslySetInnerHTML={bodyTitle}/>
+                            </div>
+                            {/* Descripcion de la seccion #1 */}
                             <h3 className="footer-title-style">
                                 {footerTitle}
                             </h3>
                         </div>
+                        {/* //Section #2 que contiene el formulario de contacto */}
                         <div className="section-2">
+                            <ContactForm/>
                         </div>
                     </div>
                 </main>
@@ -36,16 +44,19 @@ const ContactPage = ({data = []}) => {
 
 const Wrapper = styled.div`
 
+    //Estilo del contenedor principal
     .contact-container{
         width:100%;
         display:flex;
         justify-content:center;
+        margin-bottom: 100px;
     }
 
     .contact-section{
         display:grid;
         grid-template-columns: 1fr 1fr;
-        max-width:992px;
+        max-width:1200px;
+        gap:80px;
     }
 
     .section-1{
@@ -104,7 +115,7 @@ const Wrapper = styled.div`
 
     //Responsive del ContactPage
 
-    @media only screen and (max-width: 1250px) and (min-width: 413px){
+    @media only screen and (max-width: 1400px){
         .contact-section{
             grid-template-columns: 1fr;
         }
