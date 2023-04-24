@@ -69,7 +69,7 @@ function ContactForm () {
       "checkbox": checkbox
     };
 
-    fetch('https://decimodrupal.lndo.site/webform_rest/submit', {
+    fetch('https://dev-decimo-pantheon.pantheonsite.io//webform_rest/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -82,10 +82,13 @@ function ContactForm () {
           setSuccess(true);
         } else {
           setError(true);
+          console.log(response);
         }
       })
       .catch((error) => {
         setError(true);
+        console.log(error);
+        console.log("bueno");
       });
   }
 
