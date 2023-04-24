@@ -68,7 +68,7 @@ function FormBlogPage(){
             "message": message,
             "checkbox": checkbox
         };
-        fetch('https://decimodrupal.lndo.site/webform_rest/submit', {
+        fetch('https://dev-decimo-pantheon.pantheonsite.io/webform_rest/submit', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',

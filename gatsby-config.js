@@ -49,5 +49,18 @@ module.exports = {
       '**/form_submission',
     ],
   },
+  {
+    resolve:`gatsby-plugin-webfonts`,
+    options:{
+      fonts:{
+        google:[
+          {
+            family:"Cabin",
+            variants:["400", "500", "600", "700"],
+          }
+        ]
+      }
+    }
+  }
 ]
 };
