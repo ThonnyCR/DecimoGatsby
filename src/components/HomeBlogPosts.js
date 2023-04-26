@@ -228,14 +228,14 @@ const Wrapper = styled.div`
     color: black;
   }
   .newsletter{
-    margin-top: -20px;
+    margin-top: -10px;
   }
   .newsletter-text{
     padding-top: 40px;
     font-family: 'Cabin';
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 150%;
     text-align: center;
   }
