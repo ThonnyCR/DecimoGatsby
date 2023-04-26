@@ -124,6 +124,7 @@ const Wrapper = styled.div`
     }
     .subscribe{
         padding-top: 30px;
+        margin-bottom: 100px;
     }
     .substext{
         margin: 0;

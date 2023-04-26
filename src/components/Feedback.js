@@ -54,9 +54,6 @@ const Feedback = (props) => {
 }
 
 const Wrapper = styled.div`
-*{
-  font-family: 'Avenir LT Std', sans-serif;
-}
 .gradient{
   padding-top: 60px;
   background: radial-gradient(40% 10% at 5% 10%, rgba(51, 153, 153, 0.35) 0%, rgba(128, 202, 203, 0) 80%),
