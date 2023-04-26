@@ -135,8 +135,8 @@ const AboutUs = () => {
 }
 .aboutus-maintext{
     margin: 90px 0px 0px 0px;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 18px;
+    font-weight: 600;
     line-height: 150%;
     height: 200px;
 }
