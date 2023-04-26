@@ -251,7 +251,6 @@ const Wrapper = styled.div`
   }
   .newsletter-text{
     padding-top: 40px;
-    font-family: 'Avenir LT Std';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;

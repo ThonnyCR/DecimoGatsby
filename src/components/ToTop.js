@@ -51,13 +51,12 @@ const Wrapper = styled.div`
   width: 40px;
   height: 40px;
   text-align: center;
-  font-size: 24px;
   line-height: 40px;
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   z-index: 1000;
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .scroll-to-top-button.show {

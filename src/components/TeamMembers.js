@@ -85,9 +85,6 @@ const TeamMembers = (props) => {
   )
 }
 const Wrapper = styled.div`
-*{
-  font-family: 'Avenir LT Std', sans-serif;
-}
 .members-title{
   margin: 80px auto 20px auto;
   width: 50%;
