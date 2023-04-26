@@ -247,13 +247,13 @@ const Wrapper = styled.div`
     margin: 75px 0 75px 0;
   }
   .newsletter{
-    margin-top: -20px;
+    margin-top: -10px;
   }
   .newsletter-text{
     padding-top: 40px;
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 150%;
     text-align: center;
   }

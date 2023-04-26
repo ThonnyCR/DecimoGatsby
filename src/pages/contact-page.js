@@ -84,13 +84,12 @@ const Wrapper = styled.div`
     }
 
     .body-title-style p{
+        font-family: 'Cabin';
         font-style: normal;
-        font-size:60px;
-        letter-spacing: -0.04em;
-        /* width: 600px; */
-        color:#000B28;
-        line-height:70px;
-        font-weight: 600;
+        font-weight: 700;
+        font-size: 60px;
+        line-height: 65px;
+        letter-spacing: 108%;
     }
 
     .footer-title-style{

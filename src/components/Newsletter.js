@@ -5,7 +5,7 @@ import '../assets/css/sweetalert2-custom.css';
 
 async function enviarDatos(datos){
     try{
-        const response = await fetch("https://decimodrupal.lndo.site/webform_rest/submit",{
+        const response = await fetch("https://dev-decimo-pantheon.pantheonsite.io/webform_rest/submit",{
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
@@ -20,36 +20,64 @@ async function enviarDatos(datos){
         console.error("Error al enviar los datos", error);
     }
 }
-
 const Newsletter = () => {
     const [email, setEmail] = useState("");
-
+  
     const handleSubmit = (event) => {
-        event.preventDefault();
-
-        const datos = {
-            "webform_id": "subscription",
-            "email": email,
-        };
-
-        enviarDatos(datos);
+      event.preventDefault();
+  
+      if (!email) {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Please enter your email address!',
+          showConfirmButton: false,
+          timer: 3000
+        });
+        return;
+      }
+  
+      const datos = {
+        "webform_id": "subscription",
+        "email": email,
+      };
+  
+      enviarDatos(datos);
     };
 
 const alert = () => {
-    Swal.fire({
+    const email = document.getElementById('email').value; // Obtén el valor del campo de entrada de correo electrónico
+    
+    // Expresión regular para verificar el formato del correo electrónico
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     if (!emailRegex.test(email)) { // Verifica si el correo electrónico cumple con el formato esperado
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Invalid Email',
+        text: 'Please enter a valid email address!',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      return;
+    }
+    else {
+      Swal.fire({
         position: 'center',
         icon: 'success',
         title: 'New Subscription',
-        text: 'you have subscribed to Decimo Technology successfully',
+        text: 'You have successfully subscribed to Decimo Technology',
         showConfirmButton: false,
         timer: 3000
-    })
-}
+      });
+    }
+  }
         return(
         <Wrapper>
             <div className='subscribe'>
             <form className='subscribe-form' onSubmit={handleSubmit}>
-                    <input required placeholder='your email here' className='subsField' type="email" id="email" name="email" value={email} onChange={(event) => setEmail(event.target.value)}/>
+                    <input placeholder='your email here' className='subsField' type="email" id="email" name="email" value={email} onChange={(event) => setEmail(event.target.value)}/>
                     <button onClick={alert} className='subsButton' type="submit"><p className='substext'>Subscribe</p></button>
             </form>
             </div>
@@ -68,8 +96,8 @@ const Wrapper = styled.div`
         border: 1px solid rgba(0, 0, 0, 0.2);
         border-radius: 0px;
         border-radius: 10px 0px 0px 10px;
+        font-family: 'Cabin';
         font-style: normal;
-        font-weight: 600;
         font-size: 16px;
         line-height: 24px;
         padding-left: 20px;
@@ -102,9 +130,10 @@ const Wrapper = styled.div`
         margin: 0;
         transform: rotate(180deg);
         padding-top: 10px;
+        font-family: 'Cabin';
         font-style: normal;
-        font-weight: 700;
         font-size: 16px;
+        line-height: 24px;
         line-height: 24px;
         letter-spacing: -0.02em;
         color: #FFFFFF;
