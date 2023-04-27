@@ -184,6 +184,13 @@ const AboutUs = () => {
     .aboutus-text-container{
         width: 600px;
     }
+    .aboutus-maintext{
+        margin-bottom: 100px;
+        padding: 0px;
+    }
+    .aboutus-author{
+        margin-top: 40px;
+    }
 }
 @media only screen and (max-width: 640px){
     .section-1, .logo-cont, .aboutus-author, .aboutus-text-container{
@@ -204,7 +211,7 @@ const AboutUs = () => {
         margin-right: auto;
     }
     .aboutus-author{
-        margin: 180px 0px 10px 0;
+        margin: 350px 0px 10px 0;
     }
 
 }
