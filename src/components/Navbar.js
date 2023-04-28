@@ -27,32 +27,32 @@ export const query = graphql`
 const Navbar = (props) => {
   const [clicked, setClicked] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleClick = () => {
     setClicked(!clicked);
     setShowOverlay(!showOverlay);
   };
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+  //   const handleResize = () => {
+  //     setWindowWidth(window.innerWidth);
+  //   };
   
-    window.addEventListener("resize", handleResize);
+  //   window.addEventListener("resize", handleResize);
   
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    if (windowWidth > 1350 && clicked) {
-      setClicked(false);
-      setShowOverlay(false);
-    }
-  }, [windowWidth, clicked, props]);
+  // useEffect(() => {
+  //   if (windowWidth > 1350 && clicked) {
+  //     setClicked(false);
+  //     setShowOverlay(false);
+  //   }
+  // }, [windowWidth, clicked, props]);
 
   const data = useStaticQuery(query);
   const items = data.allNodeNavbar.nodes[0].field_navbaritems;
@@ -153,7 +153,7 @@ const Navbar = (props) => {
           <nav className="nav-items">
             
             <ul className={`nav-menu ${clicked ? "active" : ""}`}>
-              <li className={`nav-item btn-fatimes`}>
+              <li className={`nav-item btn-fatimes hidden`}>
                 <span className="btn-fatimes-cursor">
                   <IconContext.Provider value={{ size: 25, color: "white" }}>
                       <FaTimes onClick={handleClick} />
@@ -191,7 +191,7 @@ const Navbar = (props) => {
             
           </nav>
   
-          <div className="hamburger" onClick={handleClick}>
+          <div className="hamburger hidden" onClick={handleClick}>
             <IconContext.Provider value={{ size: 25 }}>
               <span>
                 <FaBars />
@@ -206,6 +206,9 @@ const Navbar = (props) => {
 };
 
 const Wrapper = styled.section`
+  .hidden {
+    display: none !important;
+  }
   li {
     list-style: none;
   }
@@ -294,7 +297,7 @@ const Wrapper = styled.section`
     }
 
     .hamburger {
-      display: block;
+      display: block !important;
     }
 
     ul.nav-menu {
@@ -328,7 +331,7 @@ const Wrapper = styled.section`
     }
 
     .btn-fatimes {
-      display: block;
+      display: block !important;
     }
 
     .nav-menu.active {

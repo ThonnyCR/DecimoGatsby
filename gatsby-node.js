@@ -39,17 +39,28 @@ async function createBlogPosts({ graphql, actions }) {
       allNodeBlogPost {
         nodes{
           title
+          created(formatString: "MMMM DD, YYYY")
+          relationships {
+            field_blog_post_tags {
+              name
+            }
+          }
         }
       }
     }
   `);
   data.allNodeBlogPost.nodes.forEach((post) => {
     const slugTag = slugify(post.title, { lower: true });
+    const tagNames = post.relationships.field_blog_post_tags.map(tag => tag.name);
     actions.createPage({
       path: `/blog/${slugTag}`,
       component: path.resolve(`src/templates/blog-post.js`),
       context: {
-        title: post.title
+        title: post.title,
+        created: post.created,
+        tags: tagNames,
+        limit: 2,
+        date: post.created
       },
     });
   });
@@ -95,9 +106,9 @@ async function createBlogPages({ graphql, actions }) {
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  await Promise.all(
-    [createBlogPages({ graphql, actions })],
-    [createBlogPosts({ graphql, actions })],
-    [createTags({ graphql, actions })]
-  );
+  await Promise.all([
+    createBlogPages({ graphql, actions }),
+    createBlogPosts({ graphql, actions }),
+    createTags({ graphql, actions }),
+  ]);
 };

@@ -1,10 +1,11 @@
 import React from "react";
-import { graphql,Link } from "gatsby";
+import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
-const slugify = require('slugify');
+import SimilarPost from "../components/SimilarPost";
+const slugify = require("slugify");
 
 const BlogPost = ({ data, pageContext }) => {
   const {
@@ -14,9 +15,9 @@ const BlogPost = ({ data, pageContext }) => {
     relationships: {
       field_header_image: { localFile },
       uid: { display_name },
-      field_blog_post_tags: tags
+      field_blog_post_tags: tags,
     },
-  } = data.allNodeBlogPost.nodes[0];
+  } = data.alias1.nodes[0];
 
   const main = { __html: value }; //Body
   const image = getImage(localFile); //Post Image
@@ -37,12 +38,20 @@ const BlogPost = ({ data, pageContext }) => {
                 <h1>{title}</h1>
                 <div className="post-info">
                   <div className="post-info-autor">
-                    <p>{created} By {display_name}</p>
+                    <p>
+                      {created} By {display_name}
+                    </p>
                   </div>
                   <div className="post-info-tags">
                     <div>
-                      {tags.map((tag,index)=>(
-                          <Link to={`/tag/${slugify(tag.name, { lower: true })}`} className="post-info-tag" key={index}>{tag.name}</Link>
+                      {tags.map((tag, index) => (
+                        <Link
+                          to={`/tag/${slugify(tag.name, { lower: true })}`}
+                          className="post-info-tag"
+                          key={index}
+                        >
+                          {tag.name}
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -55,6 +64,8 @@ const BlogPost = ({ data, pageContext }) => {
                 />
               </div>
             </div>
+            <div className="divisor"></div>
+            <SimilarPost data={data.alias2.nodes} />
           </section>
         </main>
       </Layout>
@@ -64,38 +75,66 @@ const BlogPost = ({ data, pageContext }) => {
 
 export const Head = ({ data, pageContext }) => (
   <SEO
-    title={`${data.allNodeBlogPost.nodes[0].title} - Decimo Technology Solutions`}
-    description={`Blog post ${data.allNodeBlogPost.nodes[0].title} of Decimo Technology Solutions`}
+    title={`${data.alias1.nodes[0].title} - Decimo Technology Solutions`}
+    description={`Blog post ${data.alias1.nodes[0].title} of Decimo Technology Solutions`}
   />
 );
 
 export const query = graphql`
-  query ($title: String!) {
-    allNodeBlogPost(filter: {title: {eq: $title}}) {
-      nodes {
-        title
-        created(formatString: "MMMM DD, YYYY")
-        body {
-          value
-        }
-        relationships {
-          field_header_image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
-              }
+query ($title: String!, $limit: Int, $tags: [String!], $date: Date) {
+  alias1: allNodeBlogPost(filter: {title: {eq: $title}}) {
+    nodes {
+      title
+      created(formatString: "MMMM DD, YYYY")
+      body {
+        value
+      }
+      relationships {
+        field_header_image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
             }
           }
-          uid {
-            display_name
-          }
-          field_blog_post_tags {
-            name
-          }
+        }
+        uid {
+          display_name
+        }
+        field_blog_post_tags {
+          name
         }
       }
     }
   }
+  alias2: allNodeBlogPost(
+    sort: {created: DESC}
+    limit: $limit
+    filter: {title: {ne: $title}, relationships: {field_blog_post_tags: {elemMatch: {name: {in: $tags}}}}, created: {lte: $date}}
+  ) {
+    nodes {
+      title
+      created(formatString: "MMMM DD, YYYY")
+      body {
+        value
+      }
+      relationships {
+        field_header_image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
+            }
+          }
+        }
+        uid {
+          display_name
+        }
+        field_blog_post_tags {
+          name
+        }
+      }
+    }
+  }
+}
 `;
 
 const Wrapper = styled.div`
@@ -104,8 +143,7 @@ const Wrapper = styled.div`
     display: block;
     max-width: 1000px;
     width: 100%;
-    margin:75px auto 75px auto;
-    
+    margin: 75px auto 75px auto;
   }
 
   .blog-post-header-image {
@@ -131,37 +169,46 @@ const Wrapper = styled.div`
     width: 100%;
   }
 
-  .post-info-autor{
-    color:#999999;
+  .post-info-autor {
+    color: #999999;
   }
 
-  .post-info-tags{
+  .post-info-tags {
     padding-top: 30px;
   }
 
-  .post-info-tag{
+  .post-info-tag {
     background-color: rgba(128, 202, 203, 0.2);
     padding: 5px 18px;
     color: #339999;
     transition: 0.3s;
-    cursor:pointer;
+    cursor: pointer;
   }
 
-  .post-info-tag:hover{
+  .post-info-tag:hover {
     background-color: rgba(128, 202, 203, 0.2);
     transition: 0.3s;
   }
 
+  .divisor {
+    border-bottom: 2px solid #999999;
+    opacity:0.5;
+  }
+  @media (max-width: 1200px) {
+    .blog-post-container {
+      padding-left: 70px;
+      padding-right: 70px;
+    }
+  }
   @media (max-width: 768px) {
     .blog-post-container {
-      padding-left:35px;
-      padding-right:35px;
+      padding-left: 35px;
+      padding-right: 35px;
     }
 
-    .post-info{
-      justify-content:center;
+    .post-info {
+      justify-content: center;
     }
-
   }
 `;
 
