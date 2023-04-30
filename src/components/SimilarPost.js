@@ -8,8 +8,8 @@ import slugify from "slugify";
 const SimilarPost = ({ data }) => {
   return (
     <Wrapper>
-      <div className="similar-aside">
-        <h2 className="similar-title">Related</h2>
+      <div className="similar-header">
+        <h2 className="similar-title">What to read next</h2>
       </div>
       <div className="similar-posts">
         {data.map((post, index) => {
@@ -27,24 +27,24 @@ const SimilarPost = ({ data }) => {
           //const cardImage = getImage(image.localFile.childImageSharp);
 
           return (
-              <div key={index} className="similar-post">
-                <div className="similar-post-header">
-                  <Link to={`/blog/${slug}`} className="similar-post-link">
-                    <h4>{title}</h4>
-                  </Link>
-                  <p className="post-info-autor">{created}</p>
-                </div>
-                <p className="similar-post-summary">{summary}</p>
-                {tags.map((tag, index) => (
-                  <Link
-                    to={`/tag/${slugify(tag.name, { lower: true })}`}
-                    className="post-info-tag"
-                    key={index}
-                  >
-                    {tag.name}
-                  </Link>
-                ))}
+            <div key={index} className="similar-post">
+              <div className="similar-post-header">
+                <Link to={`/blog/${slug}`} className="similar-post-link">
+                  <h4>{title}</h4>
+                </Link>
+                <p className="post-info-autor">{created}</p>
               </div>
+              <p className="similar-post-summary">{summary}</p>
+              {tags.map((tag, index) => (
+                <Link
+                  to={`/tag/${slugify(tag.name, { lower: true })}`}
+                  className="post-info-tag"
+                  key={index}
+                >
+                  {tag.name}
+                </Link>
+              ))}
+            </div>
           );
         })}
       </div>
@@ -55,17 +55,21 @@ const SimilarPost = ({ data }) => {
 const Wrapper = styled.div`
   display: flex;
   margin: 30px 0;
-  .similar-aside {
+  .similar-header {
     max-width: 300px;
     width: 100%;
-    text-align:center;
+    text-align: center;
   }
   .similar-posts {
     width: 100%;
   }
+  .similar-title {
+    font-weight: 700;
+  }
+
   .similar-post {
     margin-bottom: 60px;
-    max-width:600px;
+    max-width: 600px;
   }
   .similar-post-summary {
     padding: 15px 0;
@@ -85,10 +89,11 @@ const Wrapper = styled.div`
       width: 100%;
     }
     .similar-title {
-        margin-bottom:30px;
+      margin-bottom: 30px;
+      color: #000b28;
+      text-align: center;
     }
     .similar-posts {
-        
     }
   }
 `;
