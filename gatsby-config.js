@@ -10,8 +10,9 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Decimo Technology Solutions`,
-    siteUrl: `http://localhost:8001/`,
+    siteUrl: `https://decimo-technology-solutions.netlify.app/`,
     description: `Decimo site`,
+    icon: "./src/images/decimologo.png",
   },
   plugins: ["gatsby-plugin-styled-components", "gatsby-plugin-image", "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
