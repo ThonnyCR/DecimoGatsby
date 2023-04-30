@@ -63,19 +63,7 @@ const TeamMembers = (props) => {
                 <div className='card-description'>
                   {member.field_team_member_description}
                 </div>
-                {/* iconos de la card */}
-                <div className='icons-container'>
-                    <GatsbyImage
-                    image={getImage(member.relationships.field_team_member_icons[0].localFile)}
-                    alt='Icon'
-                    className='card-icon'
-                  />
-                  <GatsbyImage
-                    image={getImage(member.relationships.field_team_member_icons[1].localFile)}
-                    alt='Icon'
-                    className='card-icon'
-                  />
-                </div>
+                {/* iconos de la card (descartados) */}
               </div>
             </div>
           );
@@ -143,7 +131,7 @@ const Wrapper = styled.div`
   line-height: 24px;
 }
 .card-description{
-  width: 350px;
+  width: 80%;
   height: 60px;
   font-weight: 400;
   font-size: 16px;

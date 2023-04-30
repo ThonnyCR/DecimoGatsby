@@ -111,15 +111,14 @@ const Navbar = (props) => {
                 </ReactLink>
               </li>
               <li className="nav-item">
-                <button className="btn-contact">
-                  <Link
+              <Link
                     to="/contact-page"
-                    className="menu-link"
                     onClick={handleClick}
                   >
+                <button className="btn-contact"> 
                     {items[5]}
-                  </Link>
                 </button>
+                </Link>
               </li>
               <li className="nav-space"></li>
             </ul>
@@ -176,15 +175,15 @@ const Navbar = (props) => {
                 </ReactLink>
               </li>
               <li className="nav-item">
-                <button className="btn-contact">
-                  <Link
-                    to="/ContactPage"
+              <Link
+                    to="/contact-page"
                     className="menu-link"
                     onClick={handleClick}
                   >
-                    {items[5]}
-                  </Link>
+                <button className="btn-contact">
+                    {items[5]}  
                 </button>
+                </Link>
               </li>
               <li className="nav-space"></li>
             </ul>
@@ -256,10 +255,12 @@ const Wrapper = styled.section`
     background-color: #ff9933;
     border: none;
     transition: 0.4s ease;
+    color: white;
+    font-size: 16px;
   }
 
   .btn-contact .menu-link {
-    color: white;
+    color: white !important;
     font-size: 16px;
     font-weight: bold;
   }
@@ -272,6 +273,7 @@ const Wrapper = styled.section`
     background-color: white;
     transition: 0.3s;
     border: solid 1px #ff9933;
+    color: #ff9933;
   }
 
   .hamburger {

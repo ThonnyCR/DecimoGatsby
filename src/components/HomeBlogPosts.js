@@ -32,66 +32,76 @@ export const query = graphql`
 `
 
 const HomeBlogPosts = (props) => {
-    const data = useStaticQuery(query);
-    const posts = data.allNodeBlogPost.nodes
-    return (
-        <Wrapper>
-            <section className="blog-header">
-                <h2>{props.title}</h2>
-                <p className="blog-subtitle">{props.subtitle}</p>
-            </section>
-            {/* Pagination */}
-            <section className="blog-body">
-                <div className="cards-container">
-                    {posts.map((post, index) => {
-                        const {
-                            title,
-                            body: { value, summary },
-                            relationships: { field_header_image: image },
-                        } = post;
+  const data = useStaticQuery(query);
+  const posts = data.allNodeBlogPost.nodes
+  return (
+    <Wrapper>
+      <section className="blog-header">
+        <h2>{props.title}</h2>
+        <p className="blog-subtitle">{props.subtitle}</p>
+      </section>
+      {/* Pagination */}
+      <section className="blog-body">
+        <div className="cards-container">
+          {posts.map((post, index) => {
+            const {
+              title,
+              body: { value, summary },
+              relationships: { field_header_image: image },
+            } = post;
 
-                        const main = { __html: value };
-                        const slug = slugify(title, { lower: true });
-                        const cardImage = getImage(image.localFile.childImageSharp);
+            const main = { __html: value };
+            const slug = slugify(title, { lower: true });
+            const cardImage = getImage(image.localFile.childImageSharp);
 
-                        return (
-                            <div key={index} className="card-post">
-                                <div className="card-post-container">
-                                    <div className="card-post-header">
-                                        <GatsbyImage
-                                            image={cardImage}
-                                            alt={"Post image of " + title}
-                                            className="gatsby-image"
-                                        />
-                                    </div>
-                                    <div className="card-post-body">
-                                      <Link to={`/blog/${slug}`}>
-                                        <h5>{title}</h5>
-                                      </Link>
-                                      {/* <p dangerouslySetInnerHTML={main} /> */}
-                                      <p>{summary}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
+            return (
+              <div key={index} className="card-post">
+                <div className="card-post-container">
+                  <div className="card-post-header">
+                    <GatsbyImage
+                      image={cardImage}
+                      alt={"Post image of " + title}
+                      className="gatsby-image"
+                    />
+                  </div>
+                  <div className="card-post-body">
+                    <Link to={`/blog/${slug}`}>
+                      <h5>{title}</h5>
+                    </Link>
+                    {/* <p dangerouslySetInnerHTML={main} /> */}
+                    <p>{summary}</p>
+                  </div>
                 </div>
-                <div className='posts-link'>
-                        <Link to='/blog'>
-                            <p>{props.link}</p>
-                        </Link>
-                    </div>
-                    <Container>
-                    <p className='newsletter-text'>Subscribe to our blog and get notified</p>
-                      <Row>
-                        <Col className="newsletter d-flex justify-content-center">
-                          <Newsletter/>
-                        </Col>
-                      </Row>
-                    </Container>      
-            </section>
-        </Wrapper>
-    )
+              </div>
+            );
+          })}
+        </div>
+        <div className='posts-link'>
+          <Link to='/blog'>
+            <p>{props.link}</p>
+            {/* icono en svg de la flecha  */}
+            <svg className='link-icon' width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24.9999 12.5C24.9999 5.59476 19.4051 0 12.4999 0C5.59464 0 -0.00012207 5.59476 -0.00012207 12.5C-0.00012207 19.4052 5.59464 25 12.4999 25C19.4051 25 24.9999 19.4052 24.9999 12.5ZM2.41923 12.5C2.41923 6.93044 6.93032 2.41935 12.4999 2.41935C18.0694 2.41935 22.5805 6.93044 22.5805 12.5C22.5805 18.0696 18.0694 22.5806 12.4999 22.5806C6.93032 22.5806 2.41923 18.0696 2.41923 12.5ZM6.04826 13.5081V11.4919C6.04826 11.1593 6.32044 10.8871 6.6531 10.8871H12.4999V7.51008C12.4999 6.97077 13.1501 6.70363 13.5331 7.08165L18.5231 12.0716C18.76 12.3085 18.76 12.6915 18.5231 12.9284L13.5331 17.9183C13.1501 18.3014 12.4999 18.0292 12.4999 17.4899V14.1129H6.6531C6.32044 14.1129 6.04826 13.8407 6.04826 13.5081Z" fill="url(#paint0_linear_156_515)" />
+              <defs>
+                <linearGradient id="paint0_linear_156_515" x1="1.38521" y1="29.1129" x2="12.4888" y2="29.0415" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#339999" />
+                  <stop offset="1" stop-color="#FF9933" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </Link>
+        </div>
+        <Container>
+          <p className='newsletter-text'>Subscribe to our blog and get notified</p>
+          <Row>
+            <Col className="newsletter d-flex justify-content-center">
+              <Newsletter />
+            </Col>
+          </Row>
+        </Container>
+      </section>
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.div`
@@ -238,6 +248,9 @@ const Wrapper = styled.div`
     font-size: 16px;
     line-height: 150%;
     text-align: center;
+  }
+  .link-icon{
+    margin: auto 10px;
   }
 `
 export default HomeBlogPosts
