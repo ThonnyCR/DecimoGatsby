@@ -13,7 +13,7 @@ const TagTemplate = ({ data, pageContext }) => {
       <Wrapper>
         <main className="page">
           <section className="container">
-            <h2>{pageContext.tag} Tag</h2>
+            <h2 className="tag-template-title">{pageContext.tag}</h2>
             {posts.map((post, index) => {
               const {
                 title,
@@ -100,6 +100,12 @@ export const query = graphql`
   }
 `;
 const Wrapper = styled.div`
+  .tag-template-title {
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    line-height: 100%;
+  }
+
   a {
     text-decoration: none !important;
     color: black !important;
@@ -163,6 +169,7 @@ const Wrapper = styled.div`
     -webkit-line-clamp: 3;
     line-clamp: 3;
     overflow: hidden;
+    font-weight: 700;
   }
 
   .post-body p {

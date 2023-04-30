@@ -160,6 +160,7 @@ const Wrapper = styled.div`
   .main {
     padding-bottom: 500px;
   }
+
   .blog-post-title {
     text-align: center;
     margin: 50px auto 24px auto;

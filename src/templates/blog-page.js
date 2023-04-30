@@ -223,6 +223,7 @@ const Wrapper = styled.div`
     line-clamp: 2;
     overflow: hidden;
     margin-top: 17px;
+    font-weight: 700;
   }
 
   .card-post-body p {
