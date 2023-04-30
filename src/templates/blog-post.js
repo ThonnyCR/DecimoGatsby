@@ -29,7 +29,7 @@ const BlogPost = ({ data, pageContext }) => {
   return (
     <Wrapper>
       <Layout>
-        <main>
+        <main className="main">
           <h1 className="blog-post-title">{title}</h1>
           <p className="blog-post-subtitle">{subtitle}</p>
           <div className="blog-post-header-image">
@@ -134,6 +134,7 @@ export const query = graphql`
         created(formatString: "MMMM DD, YYYY")
         body {
           value
+          summary
         }
         relationships {
           field_header_image {
@@ -156,6 +157,9 @@ export const query = graphql`
 `;
 
 const Wrapper = styled.div`
+  .main {
+    padding-bottom: 500px;
+  }
   .blog-post-title {
     text-align: center;
     margin: 50px auto 24px auto;
@@ -256,6 +260,7 @@ const Wrapper = styled.div`
     background: linear-gradient(89.63deg, #339999 10.13%, #ff9933 90.06%);
     height: 7px;
     width: 100%;
+    margin-bottom: 85px;
   }
   @media (max-width: 1200px) {
     .blog-post-container {

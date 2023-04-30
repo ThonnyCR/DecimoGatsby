@@ -1,9 +1,8 @@
 const path = require("path");
-const slugify = require('slugify');
+const slugify = require("slugify");
 const { pathPrefix } = require("./gatsby-config");
 
 async function createTags({ graphql, actions }) {
-
   const { errors, data } = await graphql(`
     {
       allNodeBlogPost {
@@ -16,20 +15,20 @@ async function createTags({ graphql, actions }) {
         }
       }
     }
-  `)
+  `);
 
   data.allNodeBlogPost.nodes.forEach((post) => {
-    post.relationships.field_blog_post_tags.forEach(tag => {
-      const tagSlug = slugify(tag.name, { lower: true })
+    post.relationships.field_blog_post_tags.forEach((tag) => {
+      const tagSlug = slugify(tag.name, { lower: true });
       actions.createPage({
         path: `/tag/${tagSlug}`,
         component: path.resolve(`src/templates/tag-template.js`),
         context: {
           tag: tag.name,
         },
-      })
-    })
-  })
+      });
+    });
+  });
 }
 
 // This funtion create posts of blog page
@@ -37,7 +36,7 @@ async function createBlogPosts({ graphql, actions }) {
   const { errors, data } = await graphql(`
     query getTotalNodePosts {
       allNodeBlogPost {
-        nodes{
+        nodes {
           title
           created(formatString: "MMMM DD, YYYY")
           relationships {
@@ -51,7 +50,9 @@ async function createBlogPosts({ graphql, actions }) {
   `);
   data.allNodeBlogPost.nodes.forEach((post) => {
     const slugTag = slugify(post.title, { lower: true });
-    const tagNames = post.relationships.field_blog_post_tags.map(tag => tag.name);
+    const tagNames = post.relationships.field_blog_post_tags.map(
+      (tag) => tag.name
+    );
     actions.createPage({
       path: `/blog/${slugTag}`,
       component: path.resolve(`src/templates/blog-post.js`),
@@ -59,8 +60,8 @@ async function createBlogPosts({ graphql, actions }) {
         title: post.title,
         created: post.created,
         tags: tagNames,
-        limit: 2,
-        date: post.created
+        limit: 6,
+        date: post.created,
       },
     });
   });
