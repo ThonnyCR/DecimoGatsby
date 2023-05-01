@@ -112,7 +112,7 @@ const Wrapper = styled.div`
   .blog-header {
     text-align: center;
     margin-bottom: 75px;
-    margin-top:75px;
+    margin-top:130px;
   }
 
   .blog-subtitle {

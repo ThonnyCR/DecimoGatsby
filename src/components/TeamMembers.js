@@ -135,6 +135,7 @@ const Wrapper = styled.div`
   height: 60px;
   font-weight: 400;
   font-size: 16px;
+  margin: auto;
 }
 .icons-container{
   display: flex; 
