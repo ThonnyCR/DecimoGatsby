@@ -13,3 +13,24 @@
     -webkit-text-fill-color: transparent;
     font-weight: bold;
 }
+.swal2-confirm{
+    background-color: #339999!important;
+    border: radius 88px !important;
+    height: 45px!important;
+    width: 100px !important;
+    border: none!important;
+    margin-top: 24px!important;
+    cursor:pointer;
+    border-radius: 88px !important;
+    font-style:normal!important;    
+    font-weight:bold!important;
+    font-size:15px!important;
+    color:white!important;
+    border:solid 2px #339999 !important;
+}
+.swal2-confirm:hover{
+    background-color: white!important;
+    transition:0.5s!important;
+    color: #339999 !important;
+    border:solid 2px #339999!important;
+}

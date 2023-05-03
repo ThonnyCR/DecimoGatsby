@@ -1,8 +1,12 @@
 import { graphql,useStaticQuery } from 'gatsby';
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import {CheckIcon} from "../images/check.svg"
+import Swal from 'sweetalert2';
+import '../assets/css/sweetalert2-custom.css';
+import addToMailchimp from 'gatsby-plugin-mailchimp';
+import emailjs from 'emailjs-com';
+
 
 //Query del nodo sobre el formulario de contacto
 export const query = graphql`
@@ -33,6 +37,11 @@ function ContactForm () {
     const messageLabelInput = useStaticQuery(query).allNodeContactForm.nodes[0].field_message_label;
     const buttonText = useStaticQuery(query).allNodeContactForm.nodes[0].field_button_form;
 
+    //Variables que se declaran para poder manejar el formulario de contacto
+    const EMAILJS_PUBLIC_KEY = process.env.GATSBY_EMAILJS_PUBLIC_KEY;
+    const EMAILJS_SERVICE_ID = process.env.GATSBY_EMAILJS_SERVICE_ID;
+    const EMAILJS_TEMPLATE_ID = process.env.GATSBY_EMAILJS_TEMPLATE_ID;
+
     //Variables o atributos que se declaran para poder manejar el formulario de contacto
     const [name,setName] = useState('');
     const [email,setEmail] = useState('');
@@ -40,7 +49,8 @@ function ContactForm () {
     const [checkbox,setCheckbox] = useState(false);
     const [success,setSuccess] = useState(false);
     const [error, setError] = useState(false);
-
+    const [timestamp, setTimestamp] = useState('');
+ 
   function handleNameChange(event){
     setName(event.target.value);
   }
@@ -57,67 +67,106 @@ function ContactForm () {
     setCheckbox(event.target.value);
   }
 
-  function handleSubmit(event){
+  useEffect(() => {
+    setTimestamp(new Date().toISOString());
+  }, [name, email, message, checkbox]);
 
+
+  //Funcion para enviar el form usando mailchimp y emailJS
+  async function handleSubmit(event) {
     event.preventDefault();
 
-    const formData = {
-      "webform_id": "contact",
-      "name": name,
-      "email": email,
-      "message": message,
-      "checkbox": checkbox
-    };
+    if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+      console.error("Error: EmailJS variables de entorno no configuradas correctamente.");
+    }
+    else{
+      console.log("bien")
+    }
 
-    fetch('https://dev-decimo-pantheon.pantheonsite.io//webform_rest/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        "Authorization": "Basic " + btoa(process.env.GATSBY_DRUPAL_USERNAME + ":" + process.env.GATSBY_DRUPAL_PASSWORD)
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response)=>{
-        if(response.ok) {
-          setSuccess(true);
-        } else {
+    if (!checkbox) {
+      setError(true);
+      return;
+    }
+
+    const emailJSParams = {
+      from_name: name,
+      from_email: email,
+      message: message,
+      timestamp: timestamp,
+    };
+  
+      console.log("simon");
+    emailjs
+      .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailJSParams, EMAILJS_PUBLIC_KEY)
+      .then(
+        async (response) => {
+          console.log('success!', response);
+  
+          const result = await addToMailchimp(email, {
+            FNAME: name,
+            MESSAGE: message,
+            TIMESTAMP: timestamp,
+          }, {
+            allow_duplicates: true,
+          });
+  
+          if (result.result === 'success') {
+            setSuccess(true);
+            setName('');
+            setEmail('');
+            setMessage('');
+            setCheckbox(false);
+            setError(false);
+            Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: 'Your message has been sent successfully',
+            });
+          } else {
+            setError(true);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'There was an error sending your message',
+            });
+          }
+        },
+        (error) => {
+          console.log('error!', error);
           setError(true);
-          console.log(response);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'There was an error sending your message',
+          });
         }
-      })
-      .catch((error) => {
-        setError(true);
-        console.log(error);
-        console.log("bueno");
-      });
+      );
   }
 
   return (
     <Wrapper>
       <div className="main-container">
         <h2 className="main-title">{titleForm}</h2>
-        <form className="form-container" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form-container">
           <div className="name-container">
             <p className="name-text-style">{nameSubtitleForm}</p>
-            <input className="name-input-style" type="text" value={name} onChange={handleNameChange} placeholder={nameLabelInput}/>
+            <input className="name-input-style" name="user_name" type="text" value={name} onChange={handleNameChange}   placeholder={nameLabelInput}/>
           </div>
           <div className="email-container">
             <p className="email-text-style">{emailSubtitleForm}</p>
-            <input className="email-input-style" type="email" value={email} onChange={handleEmailChange} placeholder={emailLabelInput}/>
+            <input className="email-input-style" name="user_email" type="email" value={email} onChange={handleEmailChange} placeholder={emailLabelInput}/>
           </div>
           <div className="message-container">
             <p className="message-text-style">{messageSubtitleForm}</p>
-            <textarea className="message-input-style" type="text" value={message} onChange={handleMessageChange} placeholder={messageLabelInput}/>
+            <textarea className="message-input-style" name="message" type="message" value={message} onChange={handleMessageChange} placeholder={messageLabelInput}/>
           </div>
           <div className="checkbox-container">
-            <input className="checkbox-style" type="checkbox" value={checkbox} onChange={handleCheckboxChange} id="checkbox"></input>
+            <input className="checkbox-style" id="checkbox" value={checkbox} type="checkbox"  onChange={handleCheckboxChange}  required></input>
             <label for="checkbox" className="checkbox-text-style">
-              I agree to <Link to='/PrivacyPolicy' className="privacy-link-style">Privacy Policy</Link> and <Link className="terms-link-style">Terms of Use</Link>
+              I agree to <Link to='/privacy-policy' className="privacy-link-style">Privacy Policy</Link> and <Link className="terms-link-style">Terms of Use</Link>
             </label>
           </div>
-          <button type="submit" className="button-style">{buttonText}</button>
-          {success && <p>Form submitted susccessfully!</p>}
-          {error && <p>Error</p>}
+          <button type="submit" value="Send" className="button-style">{buttonText}</button>
         </form>
       </div>
     </Wrapper>
@@ -129,6 +178,7 @@ const Wrapper = styled.div`
   .main-container{
     transform: translate(25%, 25%)
   }
+  
 
   .form-container{
     display:flex;

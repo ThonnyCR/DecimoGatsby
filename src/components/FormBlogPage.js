@@ -110,7 +110,7 @@ function FormBlogPage(){
                         <div className="checkbox-container">
                             <input className="checkbox-style" type="checkbox" value={checkbox} onChange={handleCheckboxChange} id="checkbox" />
                             <label for="checkbox" className="checkbox-text-style">
-                            I agree to <Link to='/PrivacyPolicy' className="privacy-link-style">Privacy Policy</Link> and <Link className="terms-link-style">Terms of Use</Link>
+                            I agree to <Link to='/privacy-policy' className="privacy-link-style">Privacy Policy</Link> and <Link className="terms-link-style">Terms of Use</Link>
                             </label>
                         </div>
                         <button type="submit" className="button-style">{buttonText}</button>

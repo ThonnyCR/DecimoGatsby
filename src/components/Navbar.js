@@ -179,7 +179,7 @@ const Navbar = (props) => {
               <li className="nav-item">
                 <button className="btn-contact">
                   <Link
-                    to="/ContactPage"
+                    to="/contact-page"
                     className="menu-link"
                     onClick={handleClick}
                   >

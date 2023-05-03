@@ -46,7 +46,7 @@ const Wrapper = styled.div`
 
     //Estilo del contenedor principal
     .contact-container{
-        width:100%;
+        max-width: 100%;
         display:flex;
         justify-content:center;
         margin-bottom: 100px;
@@ -54,9 +54,8 @@ const Wrapper = styled.div`
 
     .contact-section{
         display:grid;
-        grid-template-columns: 1fr 1fr;
-        max-width:1200px;
-        gap:80px;
+        grid-template-columns: auto 500px;
+        gap:40px;
     }
 
     .section-1{
@@ -68,7 +67,6 @@ const Wrapper = styled.div`
         border-radius: 250px 250px 0px 0px;
         position:relative;
         overflow:visible;
-        /* width:500px; */
         height:772px;
     }
 
@@ -77,7 +75,7 @@ const Wrapper = styled.div`
         font-style: normal;
         color:#000B28;
         line-height: 17px;
-        font-weight:600;
+        font-weight:700;
         margin-bottom: 20px;
         height: 16px;
         letter-spacing:0.04em;
@@ -86,17 +84,18 @@ const Wrapper = styled.div`
     .body-title-style p{
         font-style: normal;
         font-size:60px;
-        letter-spacing: -0.04em;
-        /* width: 600px; */
+        letter-spacing: 108%;
         color:#000B28;
-        line-height:70px;
-        font-weight: 600;
+        line-height:65px;
+        font-weight: 700;
     }
+    
 
     .footer-title-style{
         font-style:normal;
         font-size:13px;
-        max-width: 283px;
+        max-width: 200px;
+        margin-top: 30px;
         height: 72px;
         font-weight: 600;
         color: rgba(0, 11, 40, 0.6);
@@ -115,15 +114,25 @@ const Wrapper = styled.div`
 
     //Responsive del ContactPage
 
-    @media only screen and (max-width: 1400px){
+    /* @media only screen and (max-width: 1400px){
         .contact-section{
-            grid-template-columns: 1fr;
+            grid-template-columns: auto;
+            margin: auto;
         }
 
         .section-2{
             margin-top:50px;
+            max-width: 700px;
         }
 
+    } */
+
+    @media only screen and (max-width: 1200px){
+        .contact-section{
+            grid-template-columns: 1fr;
+            margin: auto;
+            width: 500px;
+        }
     }
 
     @media only screen and (max-width: 600px){
@@ -131,6 +140,20 @@ const Wrapper = styled.div`
         .body-title-style p{
             font-size: 40px;
             line-height:45px;
+        }
+
+        .body-title-style{
+            text-align:center;
+        }
+
+        .header-title-style{
+            text-align:center;
+        }
+
+        .footer-title-style{
+            text-align:center;
+            /* width:230px; */
+            margin: auto;
         }
     }
 
@@ -150,9 +173,13 @@ const Wrapper = styled.div`
 
         .footer-title-style{
             text-align:center;
-            max-width:none;
+            /* width:230px; */
+            margin: auto;
         }
 
+        /* .section-2{
+            width: 450px;
+        } */
     }
 `
 

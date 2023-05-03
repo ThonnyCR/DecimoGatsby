@@ -55,7 +55,7 @@ const Footer = () => {
                     <ReactLink to='aboutus' spy={false} smooth={true} duration={100} offset={-100}><div className="column2">{data.field_footeritems[0]}</div></ReactLink>
                     <ReactLink to='solutions'  spy={false} smooth={true} duration={100} offset={-100}><div className="column3">{data.field_footeritems[1]}</div></ReactLink>
                     <Link to='/'> <div className="column4">{data.field_footeritems[2]}</div></Link>
-                    <Link to='/ContactPage'><div className="column5">{data.field_footeritems[3]}</div></Link>
+                    <Link to='/contact-page'><div className="column5">{data.field_footeritems[3]}</div></Link>
                 </div>
                 <hr className='footer-lower-line'></hr>
                 {/* icons and copy right section */}
@@ -99,7 +99,7 @@ const Footer = () => {
                                             /></div></Link>
                     <Link to='/'><div className="column2">Home</div></Link>
                     <Link to='/'> <div className="column4">{data.field_footeritems[2]}</div></Link>
-                    <Link to='/ContactPage'><div className="column5">{data.field_footeritems[3]}</div></Link>
+                    <Link to='/contact-page'><div className="column5">{data.field_footeritems[3]}</div></Link>
                 </div>
                 <hr className='footer-lower-line'></hr>
                 {/* icons and copy right section */}
