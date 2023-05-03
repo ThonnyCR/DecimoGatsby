@@ -6,11 +6,11 @@ import slugify from "slugify";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
 import Newsletter from "../components/Newsletter";
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from "react-bootstrap";
 import PaginationBlog from "../components/PaginationBlog";
 import FormBlogPage from "../components/FormBlogPage";
 
-const BlogPage = ({ data, pageContext } ) => {
+const BlogPage = ({ data, pageContext }) => {
   // data
   const { title, field_blog_page_subtitle: subtitle } =
     data.allNodeBlogPage.nodes[0];
@@ -24,7 +24,6 @@ const BlogPage = ({ data, pageContext } ) => {
       <Wrapper>
         <main>
           {/* header */}
-          { }
           <section className="blog-header">
             <h2>{title}</h2>
             <p className="blog-subtitle">{subtitle}</p>
@@ -45,7 +44,6 @@ const BlogPage = ({ data, pageContext } ) => {
 
                 return (
                   <div key={index} className="card-post">
-                    <div className="top-gradient"></div>
                     <div className="card-post-container">
                       <div className="card-post-header">
                         <GatsbyImage
@@ -58,7 +56,6 @@ const BlogPage = ({ data, pageContext } ) => {
                         <Link to={`/blog/${slug}`}>
                           <h5>{title}</h5>
                         </Link>
-                        {/* <p dangerouslySetInnerHTML={main} /> */}
                         <p>{summary}</p>
                       </div>
                     </div>
@@ -69,27 +66,38 @@ const BlogPage = ({ data, pageContext } ) => {
           </section>
           {/* Pagination */}
           <section className="blog-navigation">
-          <PaginationBlog currentPage={currentPage} numPages={numPages} />
-        </section>
+            <PaginationBlog currentPage={currentPage} numPages={numPages} />
+          </section>
         </main>
         <Container>
-          <p className='newsletter-text'>Subscribe to our blog and get notified</p>
-              <Row>
-                <Col className="newsletter d-flex justify-content-center">
-                  <Newsletter/>
-                </Col>
-              </Row>
+          <p className="newsletter-text">
+            Subscribe to our blog and get notified
+          </p>
+          <Row>
+            <Col className="newsletter d-flex justify-content-center">
+              <Newsletter />
+            </Col>
+          </Row>
         </Container>
-        <FormBlogPage/>
+        <FormBlogPage />
       </Wrapper>
     </Layout>
   );
-  
 };
 
-export const Head = ({pageContext}) => (
-  <SEO title={`Blog ${pageContext.currentPage === 0 ? "1" : pageContext.currentPage} - Decimo Technology Solutions`} pathname={`blog/${pageContext.currentPage === 0 ? "1" : pageContext.currentPage}`} description={`Blog page ${pageContext.currentPage === 0 ? "1" : pageContext.currentPage} of Decimo Technology Solutions`}/>
-)
+export const Head = ({ pageContext }) => (
+  <SEO
+    title={`Blog ${
+      pageContext.currentPage === 0 ? "1" : pageContext.currentPage
+    } - Decimo Technology Solutions`}
+    pathname={`blog/${
+      pageContext.currentPage === 0 ? "1" : pageContext.currentPage
+    }`}
+    description={`Blog page ${
+      pageContext.currentPage === 0 ? "1" : pageContext.currentPage
+    } of Decimo Technology Solutions`}
+  />
+);
 export const query = graphql`
   query ($skip: Int!, $limit: Int!) {
     allNodeBlogPage {
@@ -127,13 +135,13 @@ export const query = graphql`
 
 const Wrapper = styled.div`
   .blog-body {
-    width:100%;
+    width: 100%;
   }
 
   .blog-header {
     text-align: center;
     margin-bottom: 75px;
-    margin-top:75px;
+    margin-top: 75px;
   }
 
   .blog-subtitle {
@@ -141,55 +149,54 @@ const Wrapper = styled.div`
   }
 
   .cards-container {
-    display:grid;
+    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     grid-auto-rows: minmax(320px, auto);
     justify-items: center;
     max-width: 1270px;
-    gap:40px;
-    margin-left:auto;
+    gap: 40px;
+    margin-left: auto;
     margin-right: auto;
   }
 
   .card-post {
-  position: relative;
-  transition: 0.3s ease;
-  width: 320px;
-  height: 320px;
-  display: inline-block;
-  background: transparent;
-  border: 1px solid #E7EAEE;
-}
+    position: relative;
+    transition: 0.3s ease;
+    width: 320px;
+    height: 320px;
+    display: inline-block;
+    background: transparent;
+    border: 1px solid #e7eaee;
+  }
 
-.card-post a {
-  color: black;
-}
+  .card-post a {
+    color: black;
+  }
 
-.card-post::before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: 0;
-  right: 0;
-  height: 5px;
-  background-image: linear-gradient(89.63deg, #339999 5.4%, #ff9933 49.53%);
-  opacity: 0;
-  transition: 0.3s ease;
-}
+  .card-post::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-image: linear-gradient(89.63deg, #339999 5.4%, #ff9933 49.53%);
+    opacity: 0;
+    transition: 0.3s ease;
+  }
 
-.card-post:hover {
-  background: #FFFFFF;
-  box-shadow: 0px 48px 140px rgba(57, 59, 106, 0.15);
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
-}
+  .card-post:hover {
+    background: #ffffff;
+    box-shadow: 0px 48px 140px rgba(57, 59, 106, 0.15);
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
 
-.card-post:hover::before {
-  opacity: 1;
-}
+  .card-post:hover::before {
+    opacity: 1;
+  }
 
   .card-post-container {
-    /* border: 1px solid #E7EAEE; */
     height: 100%;
     padding: 17px 16px;
   }
@@ -201,7 +208,7 @@ const Wrapper = styled.div`
   }
 
   .card-post-body {
-    display:flex;
+    display: flex;
     flex-direction: column;
     padding: 0px 20px 18px 20px;
     width: 100%;
@@ -209,16 +216,17 @@ const Wrapper = styled.div`
     position: relative;
   }
 
-  .card-post-body h5{
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:3;
-    line-clamp:3;
-    overflow:hidden;
-    margin-top:17px;
+  .card-post-body h5 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    margin-top: 17px;
+    font-weight: 700;
   }
-  
-  .card-post-body p{
+
+  .card-post-body p {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -226,7 +234,7 @@ const Wrapper = styled.div`
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
-    line-clamp:4;
+    line-clamp: 4;
     /* white-space: nowrap; */
   }
 
@@ -246,11 +254,12 @@ const Wrapper = styled.div`
     justify-content: center;
     margin: 75px 0 75px 0;
   }
-  .newsletter{
-    margin-top: -10px;
+  .newsletter {
+    margin-top: -20px;
   }
-  .newsletter-text{
+  .newsletter-text {
     padding-top: 40px;
+    font-family: "Avenir LT Std";
     font-style: normal;
     font-weight: 400;
     font-size: 16px;

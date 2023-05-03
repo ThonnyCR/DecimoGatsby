@@ -1,9 +1,8 @@
 const path = require("path");
-const slugify = require('slugify');
+const slugify = require("slugify");
 const { pathPrefix } = require("./gatsby-config");
 
 async function createTags({ graphql, actions }) {
-
   const { errors, data } = await graphql(`
     {
       allNodeBlogPost {
@@ -16,20 +15,20 @@ async function createTags({ graphql, actions }) {
         }
       }
     }
-  `)
+  `);
 
   data.allNodeBlogPost.nodes.forEach((post) => {
-    post.relationships.field_blog_post_tags.forEach(tag => {
-      const tagSlug = slugify(tag.name, { lower: true })
+    post.relationships.field_blog_post_tags.forEach((tag) => {
+      const tagSlug = slugify(tag.name, { lower: true });
       actions.createPage({
         path: `/tag/${tagSlug}`,
         component: path.resolve(`src/templates/tag-template.js`),
         context: {
           tag: tag.name,
         },
-      })
-    })
-  })
+      });
+    });
+  });
 }
 
 // This funtion create posts of blog page
@@ -37,19 +36,32 @@ async function createBlogPosts({ graphql, actions }) {
   const { errors, data } = await graphql(`
     query getTotalNodePosts {
       allNodeBlogPost {
-        nodes{
+        nodes {
           title
+          created(formatString: "MMMM DD, YYYY")
+          relationships {
+            field_blog_post_tags {
+              name
+            }
+          }
         }
       }
     }
   `);
   data.allNodeBlogPost.nodes.forEach((post) => {
     const slugTag = slugify(post.title, { lower: true });
+    const tagNames = post.relationships.field_blog_post_tags.map(
+      (tag) => tag.name
+    );
     actions.createPage({
       path: `/blog/${slugTag}`,
       component: path.resolve(`src/templates/blog-post.js`),
       context: {
-        title: post.title
+        title: post.title,
+        created: post.created,
+        tags: tagNames,
+        limit: 6,
+        date: post.created,
       },
     });
   });
@@ -95,9 +107,9 @@ async function createBlogPages({ graphql, actions }) {
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  await Promise.all(
-    [createBlogPages({ graphql, actions })],
-    [createBlogPosts({ graphql, actions })],
-    [createTags({ graphql, actions })]
-  );
+  await Promise.all([
+    createBlogPages({ graphql, actions }),
+    createBlogPosts({ graphql, actions }),
+    createTags({ graphql, actions }),
+  ]);
 };
