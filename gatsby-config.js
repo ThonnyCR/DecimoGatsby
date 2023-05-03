@@ -1,8 +1,12 @@
 // support for .env, .env.development, and .env.production
-require("dotenv").config()
-require("dotenv").config({
+const dotenv = require('dotenv');
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
+
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
 
 /**
  * @type {import('gatsby').GatsbyConfig}
@@ -62,6 +66,13 @@ module.exports = {
         ]
       }
     }
-  }
+  },
+  {
+    resolve: `gatsby-plugin-mailchimp`,
+    options: {
+      endpoint: process.env.GATSBY_PLUGIN_MAILCHIMP_ADDRESS,
+      allow_duplicates: process.env.NODE_ENV !== 'production',
+    },
+  },
 ]
 };

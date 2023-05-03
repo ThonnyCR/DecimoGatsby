@@ -45,6 +45,7 @@ const Wrapper = styled.main`
   .container{
     text-align:center;
     margin-top: 100px;
+    margin-bottom: 230px;
   }
 
   //Estilo del titulo

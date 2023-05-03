@@ -1,6 +1,8 @@
 const path = require("path");
 const slugify = require("slugify");
 const { pathPrefix } = require("./gatsby-config");
+/* const express = require('express');
+const sendEmail = require('./src/api/sendEmail'); */
 
 async function createTags({ graphql, actions }) {
   const { errors, data } = await graphql(`
@@ -113,3 +115,7 @@ exports.createPages = async ({ graphql, actions }) => {
     createTags({ graphql, actions }),
   ]);
 };
+
+/* exports.onCreateDevServer = ({ app }) => {
+  app.use('/api', sendEmail);
+}; */
