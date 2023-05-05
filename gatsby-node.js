@@ -1,3 +1,4 @@
+const { postSlug } = require("./src/utils/slugExpression");
 const path = require("path");
 const slugify = require("slugify");
 const { pathPrefix } = require("./gatsby-config");
@@ -19,7 +20,8 @@ async function createTags({ graphql, actions }) {
 
   data.allNodeBlogPost.nodes.forEach((post) => {
     post.relationships.field_blog_post_tags.forEach((tag) => {
-      const tagSlug = slugify(tag.name, { lower: true });
+      // const tagSlug = slugify(tag.name, { lower: true });
+      const tagSlug = postSlug(tag.name);
       actions.createPage({
         path: `/tag/${tagSlug}`,
         component: path.resolve(`src/templates/tag-template.js`),
@@ -49,7 +51,8 @@ async function createBlogPosts({ graphql, actions }) {
     }
   `);
   data.allNodeBlogPost.nodes.forEach((post) => {
-    const slugTag = slugify(post.title, { lower: true });
+    // const slugTag = slugify(post.title, { lower: true });
+    const slugTag = postSlug(post.title);
     const tagNames = post.relationships.field_blog_post_tags.map(
       (tag) => tag.name
     );

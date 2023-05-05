@@ -6,6 +6,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import slugify from "slugify";
 import Newsletter from "./Newsletter";
 import { Container, Row, Col } from "react-bootstrap";
+import { postSlug } from "../utils/slugExpression";
 
 export const query = graphql`
   {
@@ -50,7 +51,8 @@ const HomeBlogPosts = (props) => {
             } = post;
 
             const main = { __html: value };
-            const slug = slugify(title, { lower: true });
+            // const slug = slugify(title, { lower: true });
+            const slug = postSlug(title);
             const cardImage = getImage(image.localFile.childImageSharp);
 
             return (
