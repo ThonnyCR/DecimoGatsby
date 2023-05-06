@@ -6,7 +6,7 @@ import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
 import SimilarPost from "../components/SimilarPost";
 import { readingTime } from "../utils/readingTime";
-
+import { postSlug } from "../utils/slugExpression";
 const slugify = require("slugify");
 
 const BlogPost = ({ data, pageContext }) => {
@@ -51,7 +51,7 @@ const BlogPost = ({ data, pageContext }) => {
                   <div>
                     {tags.map((tag, index) => (
                       <Link
-                        to={`/tag/${slugify(tag.name, { lower: true })}`}
+                        to={`/tag/${postSlug(tag.name)}`}
                         className="post-info-tag"
                         key={index}
                       >

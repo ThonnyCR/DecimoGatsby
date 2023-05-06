@@ -9,6 +9,7 @@ import Newsletter from "../components/Newsletter";
 import { Container, Row, Col } from "react-bootstrap";
 import PaginationBlog from "../components/PaginationBlog";
 import FormBlogPage from "../components/FormBlogPage";
+import { postSlug } from "../utils/slugExpression";
 
 const BlogPage = ({ data, pageContext }) => {
   // data
@@ -38,8 +39,8 @@ const BlogPage = ({ data, pageContext }) => {
                   relationships: { field_header_image: image },
                 } = post;
 
-                // const main = { __html: value };
-                const slug = slugify(title, { lower: true });
+                // const slug = slugify(title, { lower: true });
+                const slug = postSlug(title);
                 const cardImage = getImage(image.localFile.childImageSharp);
 
                 return (
