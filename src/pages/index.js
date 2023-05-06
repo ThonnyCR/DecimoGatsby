@@ -12,7 +12,6 @@ import Projects from "../components/Projects"
 import { SEO } from "../components/seo"
 import OpenPositions from "../components/OpenPositions"
 import HomeBlogPosts from "../components/HomeBlogPosts"
-import Testing from "../components/Testing"
 import FormHomePage from "../components/FormHomePage"
 
 const IndexPage = ({ data = [] }) => {
