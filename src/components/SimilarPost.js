@@ -4,6 +4,7 @@ import { StaticQuery, graphql, Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Link as ReactLink } from "react-scroll";
 import slugify from "slugify";
+import { postSlug } from "../utils/slugExpression";
 
 const SimilarPost = ({ data }) => {
   return (
@@ -23,7 +24,8 @@ const SimilarPost = ({ data }) => {
               },
             } = post;
 
-            const slug = slugify(title, { lower: true });
+            // const slug = slugify(title, { lower: true });
+            const slug = postSlug(title);
             const cardImage = getImage(image.localFile.childImageSharp);
 
             return (

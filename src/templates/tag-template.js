@@ -3,7 +3,7 @@ import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
-
+import { postSlug } from "../utils/slugExpression";
 const slugify = require("slugify");
 
 const TagTemplate = ({ data, pageContext }) => {
@@ -23,7 +23,7 @@ const TagTemplate = ({ data, pageContext }) => {
                   field_blog_post_tags: tags,
                 },
               } = post;
-              const slug = slugify(title, { lower: true });
+              const slug = postSlug(title);
               const postImage = getImage(image.localFile.childImageSharp);
 
               return (
@@ -43,7 +43,7 @@ const TagTemplate = ({ data, pageContext }) => {
                     <div className="post-tags">
                       {tags.map((tag, index) => (
                         <Link
-                          to={`/tag/${slugify(tag.name, { lower: true })}`}
+                          to={`/tag/${postSlug(tag.name)}`}
                           className="post-info-tag"
                           key={index}
                         >
