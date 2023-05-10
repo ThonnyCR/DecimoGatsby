@@ -3,8 +3,10 @@ import { graphql,Link } from "gatsby";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
+import FormBlogDetail from "../components/FormBlogDetail";
 import { SEO } from "../components/seo";
 const slugify = require('slugify');
+
 
 const BlogPost = ({ data, pageContext }) => {
   const {
@@ -56,6 +58,7 @@ const BlogPost = ({ data, pageContext }) => {
               </div>
             </div>
           </section>
+          <FormBlogDetail/>
         </main>
       </Layout>
     </Wrapper>
