@@ -3,11 +3,13 @@ import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
+import FormBlogDetail from "../components/FormBlogDetail";
 import { SEO } from "../components/seo";
 import SimilarPost from "../components/SimilarPost";
 import { readingTime } from "../utils/readingTime";
 import { postSlug } from "../utils/slugExpression";
 const slugify = require("slugify");
+
 
 const BlogPost = ({ data, pageContext }) => {
   const {
@@ -77,6 +79,7 @@ const BlogPost = ({ data, pageContext }) => {
           </section>
           <div className="blog-post-divisor-end"></div>
           <SimilarPost data={data.alias2.nodes} />
+          <FormBlogDetail/>
         </main>
       </Layout>
     </Wrapper>
